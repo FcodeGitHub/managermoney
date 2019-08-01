@@ -12,6 +12,24 @@
 <script type="text/javascript">
    EvPNG.fix('div, ul, img, li, input,span, p');
 </script>
+
+<script>
+	$(function selectProject(){
+	    $.ajax({
+			url:"project/list",
+			type:"get",
+			dataType:"json",
+			success:function (data) {
+
+			},
+			error:function (msg) {
+				alert("连接异常");
+			}
+		});
+	});
+</script>
+
+
 <![endif]-->
 </head>
 <body>

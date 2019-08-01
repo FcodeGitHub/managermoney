@@ -1,4 +1,4 @@
-package com.hy.moneyplanning.managemoney;
+package com.hy.moneyplanning;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,5 +1,6 @@
 package com.hy.moneyplanning.managemoney;
 
+import com.hy.moneyplanning.ManagemoneyApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
