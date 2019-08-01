@@ -10,30 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
-//@RequestMapping("/project")
+@RestController
+@RequestMapping("/project")
 public class ProjectController {
 
     @Autowired
     ProjectService projectService;
 
-    @RequestMapping("/listss")
-    @ResponseBody
+    /*
+    * 查询项目列表
+    * */
+    @RequestMapping("/list")
     public List<Project> showList(){
 
         List<Project> projectList = projectService.showList();
 
-        System.out.println("666666");
+        //System.out.println("666666");
         return projectList;
     }
 
-    @RequestMapping("/demo")
-    @ResponseBody
-    public List<Project> demo(){
-
-        List<Project> projectList = projectService.showList();
-
-        System.out.println("666666");
-        return projectList;
-    }
 }
