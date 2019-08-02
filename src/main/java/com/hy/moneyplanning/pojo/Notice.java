@@ -1,13 +1,14 @@
 package com.hy.moneyplanning.pojo;
 
-import java.util.Date;
-
 public class Notice {
     private Integer id;
 
     private String title;
 
-    private Date createtime;
+    private String createTime;
+
+    public Notice() {
+    }
 
     public Integer getId() {
         return id;
@@ -22,14 +23,23 @@ public class Notice {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Notice{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
     }
 }
