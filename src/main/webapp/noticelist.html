@@ -19,7 +19,7 @@
                 url: "showNoticeList",
                 type: "POST",
                 success: function (data) {
-                    showData(data);
+                    alert(data.list);
                 }
             });
         });
@@ -28,6 +28,7 @@
         function showData(data) {
             // 用于定义拼接字符串
             var str = "";
+            var a = "";
             // 进行拼接
             for (var i = 0; i < data.length; i++) {
                 str = "<li class=\"clearfix\"><a href=\"article.html\">" + data[i].title + "</a><span>" + data[i].createTime + "</span></li>";
@@ -105,7 +106,6 @@
             <div class="notic_sec_r fl">
                 <h2 class="notic_secr_tit">网站公告</h2>
                 <ul class="notic_secr_ul" id="noticeUl">
-
                 </ul>
                 <p class="notic_pagelink">
                     <a href="#" class="notic_acur">1</a>

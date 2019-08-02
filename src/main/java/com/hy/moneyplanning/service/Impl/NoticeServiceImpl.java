@@ -1,5 +1,6 @@
 package com.hy.moneyplanning.service.Impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hy.moneyplanning.mapper.NoticeMapper;
 import com.hy.moneyplanning.pojo.Notice;
 import com.hy.moneyplanning.service.NoticeService;
@@ -15,7 +16,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public List<Notice> showNoticeList(int page, int pageSize) {
-
+        PageHelper.startPage(page,pageSize);
         return noticeMapper.showNoticeList();
     }
 }

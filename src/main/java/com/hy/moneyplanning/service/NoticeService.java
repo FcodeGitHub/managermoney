@@ -8,5 +8,5 @@ public interface NoticeService {
     /**
      * 查询所有公告
      */
-    List<Notice> showNoticeList(int page, int pageSize);
+    List<Notice> showNoticeList(int page,int paeSize);
 }

@@ -14,13 +14,4 @@ public class ManagemoneyApplication {
         SpringApplication.run(ManagemoneyApplication.class, args);
     }
 
-    @Bean
-    public PageInterceptor pageInterceptor() {
-        PageInterceptor pageInterceptor = new PageInterceptor();
-        Properties properties = new Properties();
-        properties.setProperty("helperDialect","mysql");
-        properties.setProperty("reasonable","true");
-        pageInterceptor.setProperties(properties);
-        return pageInterceptor;
-    }
 }
