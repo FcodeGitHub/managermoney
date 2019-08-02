@@ -1,5 +1,7 @@
 package com.hy.moneyplanning.controller;
 
+import com.hy.moneyplanning.pojo.Dynamic;
+import com.hy.moneyplanning.pojo.News;
 import com.hy.moneyplanning.pojo.Project;
 import com.hy.moneyplanning.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,25 @@ public class ProjectController {
         //System.out.println("666666");
         return projectList;
     }
+
+
+    /*查询行业动态列表*/
+    @RequestMapping("/dynamicsList")
+    public List<Dynamic> dynamicsList(){
+
+        List<Dynamic> dynamicList = projectService.dynamicsList();
+
+        return dynamicList;
+    }
+
+    /*查询媒体报道列表*/
+    @RequestMapping("/newsList")
+    public List<News> newsList(){
+
+        List<News> newsList = projectService.newsList();
+
+        return newsList;
+    }
+
 
 }

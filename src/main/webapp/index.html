@@ -15,10 +15,11 @@
 <![endif]-->
 
 <script>
+	//项目列表展示
 	$(function(){
 	    $.ajax({
 			url:"project/list",
-			type:"get",
+			type:"post",
 			dataType:"json",
 			success:function (data) {
 				showData(data);
@@ -50,10 +51,63 @@
 					"</ul></div><a href=\"detail.html?id="+id+"\" class=\"block3_btn fl\">立即投资</a></div>"
 
 			$("#listDiv").append(str);
+			$("#projectList").append(str);
 		}
 
 	}
-</script>
+
+		//行业动态展示
+		$(function () {
+			$.ajax({
+				url:"project/dynamicsList",
+				type:"post",
+				dataType:"json",
+				success:function (data) {
+					showDynamic(data)
+				},
+				error:function (msg) {
+					alert("ajax异常" + msg);
+				}
+			})
+		});
+
+		//展示行业动态
+		function showDynamic(data) {
+
+			var str = "";
+			for (var i = 0; i < data.length; i++) {
+
+				str = "<li><a href=\"#\">"+ data[i].info +"</a></li>"
+				$("#dynamicsList").append(str);
+			}
+		}
+
+		//媒体报道展示
+		$(function () {
+			$.ajax({
+				url:"project/newsList",
+				type:"post",
+				datatype:"json",
+				success:function (data) {
+					showNews(data);
+				},
+				error:function (msg) {
+					alert("ajax异常" + msg);
+				}
+			});
+		});
+
+		//展示媒体报道
+		function showNews(data) {
+
+			var str = "";
+			for (var i = 0; i < data.length; i++) {
+
+				str = "<li><a href=\"#\">"+data[i].info+"</a></li>"
+				$("#News").append(str);
+			}
+		}
+	</script>
 
 </head>
 
@@ -234,8 +288,8 @@
 
          	  	    </div>
          	  	    <!-- end 项目列表 -->
-         	  	     <div class="block3_prolist" style="display:none;">
-         	  	     2
+         	  	     <div class="block3_prolist" style="display:none;" id="projectList">
+
          	  	     </div>
          	  </div>
          </div>
@@ -249,21 +303,12 @@
          	    	<h2 class="block3_tit clearfix block5_l_tit"><span class="block3_curspan news_span">行业动态</span><em><img src="images/shu.png" alt=""></em><span class="news_span">媒体报道</span><a href="#">更多></a></h2>
          	    	<div class="block5_box">
 
-	         	    	<ul class="news_ul">
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
+	         	    	<ul class="news_ul" id="dynamicsList">
+
 	         	    	</ul>
-	         	    	<ul class="news_ul" style="display:none;">
-	         	    		<li><a href="#">6月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
-	         	    		<li><a href="#">5月组团推荐排行榜</a></li>
+
+	         	    	<ul class="news_ul" id="News" style="display:none;">
+
 	         	    	</ul>
 	         	    </div>
          	    </div>
