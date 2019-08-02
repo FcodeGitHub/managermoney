@@ -8,4 +8,12 @@
         select * from projectList
     </select>
 
+    <select id="dynamicsList" resultType="com.hy.moneyplanning.pojo.Dynamic">
+        select * from dynamics
+    </select>
+
+    <select id="newsList" resultType="com.hy.moneyplanning.pojo.News">
+        select * from news
+    </select>
+
 </mapper>

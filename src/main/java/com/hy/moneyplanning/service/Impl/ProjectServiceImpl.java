@@ -1,6 +1,8 @@
 package com.hy.moneyplanning.service.Impl;
 
 import com.hy.moneyplanning.mapper.ProjectMapper;
+import com.hy.moneyplanning.pojo.Dynamic;
+import com.hy.moneyplanning.pojo.News;
 import com.hy.moneyplanning.pojo.Project;
 import com.hy.moneyplanning.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +20,15 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> showList() {
 
         return projectMapper.showList();
+    }
+
+    @Override
+    public List<Dynamic> dynamicsList() {
+        return projectMapper.dynamicsList();
+    }
+
+    @Override
+    public List<News> newsList() {
+        return projectMapper.newsList();
     }
 }
