@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<title>注册</title>
@@ -13,6 +13,27 @@
    EvPNG.fix('div, ul, img, li, input,span, p');
 </script>
 <![endif]-->
+	<script type="javascript">
+		$(function () {
+			$("#button").click(function () {
+				$.ajax({
+					url:"/user/register" , // 请求路径
+					type:"POST" , //请求方式
+					//data: "username=jack&age=23",//请求参数
+					//data:{"username":"jack","age":23},
+					data:$("form").serialize(),
+					success:function (data) {
+						alert(data);
+						location.href="";
+					},//响应成功后的回调函数
+					error:function () {
+						alert("出错啦...")
+					},//表示如果请求响应出现错误，会执行的回调函数
+					dataType:"text"//设置接受到的响应数据的格式
+				});
+			})
+		});
+</script>
 </head>
 <body>
 <!-- header start -->
@@ -59,7 +80,7 @@
 	  	   	     	      <span class="fl">注册</span>
 	  	   	     	      <em class="fr">没有帐号，<a href="#">立即登录</a></em>
 	  	   	     	</h2>
-	  	   	     	<form>
+	  	   	     	<form action="${pageContext.request.contextPath}register" method="post">
 	  	   	     	   	    <fieldset>
 	  	   	     	   	    	  <p class="mt20">
 	  	   	     	   	    	  	 <input type="text" placeholder="用户名/手机" class="lg_input01 lg_input">
@@ -81,7 +102,8 @@
 	  	   	     	   	    	  	 <input type="text" placeholder="邀请码" class="lg_input03 lg_input">
 	  	   	     	   	    	  </p>
                                   <p class="pt10"><a href="#">使用条款</a>&nbsp;&nbsp;<a href="#">隐私条款</a></p>
-                                 <p class="mt20"><a href="#" class="lg_btn">立即登陆</a></p>
+                                <!--<p class="mt20"><a href="#" class="lg_btn">立即登陆</a></p>-->
+								<p class="mt20"><a href="index.html" class="lg_btn" id="button">立即登陆</a></p>
 	  	   	     	   	    </fieldset>
 	  	   	     	   </form>
 		   	   </div>

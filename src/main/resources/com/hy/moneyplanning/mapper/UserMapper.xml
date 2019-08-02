@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.moneyplanning.mapper.UserMapper">
+    <resultMap id="userMap" type="com.hy.moneyplanning.pojo.User">
+        <result column="id" property="id" />
+        <result column="username" property="userName" />
+        <result column="password" property="passWord" />
+        <result column="phonenum" property="phoneNum" />
+    </resultMap>
+    <!--验证账户是否存在-->
+    <select id="validateName" resultMap="userMap">
+        select count(1) from user where username = #{userName} or phonenum = #{phoneNum}
+    </select>
+    <!--验证账户是否存在-->
+    <insert id="register" parameterMap="userMap">
+    insert into user (username,password,phonenum) values (#{userName}.#{passWord}.#{phoneNum})
+    </insert>
+</mapper>
