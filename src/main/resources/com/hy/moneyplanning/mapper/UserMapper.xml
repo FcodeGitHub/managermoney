@@ -16,7 +16,7 @@
     </select>
 
     <!--注册账户-->
-    <insert id="register" parameterType="user" >
+    <insert id="register" parameterType="int">
     insert into user (username,password,phonenum) values (#{userName},#{passWord},#{phoneNum})
     </insert>
 

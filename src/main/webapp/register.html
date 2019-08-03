@@ -24,14 +24,15 @@
 					data:$("form").serialize(),
 					success:function (data) {
 						alert(data);
-						location.href="/index.html";
+						location.href="index.html";
+						alert("注册成功");
 					},//响应成功后的回调函数
 					error:function () {
-						alert("出错啦...")
+						alert("出错啦...");
 					},//表示如果请求响应出现错误，会执行的回调函数
 					dataType:"text"//设置接受到的响应数据的格式
 				});
-			})
+			});
 		});
 </script>
 </head>
@@ -72,8 +73,7 @@
 	<div class="reg_con px1000">
 		   <div class="reg_box clearfix">
 		   	   <div class="reg_box_l fl">
-		   	   	  <img src="
-		   	   	  images/reg_pic01.png" alt="">
+		   	   	  <img src="images/reg_pic01.png" alt="">
 		   	   </div>
 		   	   <div class="reg_box_r fl">
 		   	   	    <h2 class="lg_sec_tit clearfix">
@@ -103,7 +103,9 @@
 	  	   	     	   	    	  </p>
                                   <p class="pt10"><a href="#">使用条款</a>&nbsp;&nbsp;<a href="#">隐私条款</a></p>
                                 <!--<p class="mt20"><a href="#" class="lg_btn">立即登陆</a></p>-->
+
 								<p class="mt20"><a href="" class="lg_btn" id="button">立即登陆</a></p>
+
 	  	   	     	   	    </fieldset>
 	  	   	     	   </form>
 		   	   </div>

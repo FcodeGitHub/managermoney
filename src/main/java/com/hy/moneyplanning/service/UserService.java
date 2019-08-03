@@ -12,5 +12,4 @@ public interface UserService {
     //注册
     boolean register(User user);
 
-
 }
