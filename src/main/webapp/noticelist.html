@@ -35,7 +35,7 @@
             var p = $("#p");
             // 进行拼接
             for (var i = 0; i < noticeList.length; i++) {
-                str = "<li class=\"clearfix\"><a href=\"article.html\">" + noticeList[i].title + "</a><span>" + noticeList[i].createTime + "</span></li>";
+                str = "<li class=\"clearfix\"><a href=\"article.html?id="+noticeList[i].id+"\">" + noticeList[i].title + "</a><span>" + noticeList[i].createTime + "</span></li>";
                 $("#noticeUl").append(str);
             }
             for (var j = 1; j <= pages; j++) {
