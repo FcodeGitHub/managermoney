@@ -13,6 +13,26 @@
    EvPNG.fix('div, ul, img, li, input,span, p');
 </script>
 <![endif]-->
+
+	<script>
+
+		//展示投资项目
+		$(function () {
+			$.ajax({
+				url:"invest/showInvestProject",
+				type:"post",
+				dataType:"json",
+				success:function (data) {
+					showAllInvestProject(data);
+				},
+				error:function (msg) {
+					alert("展示投资项目失败了！！！" + msg);
+				}
+			});
+		});
+
+	</script>
+
 </head>
 <body>
 <!-- header start -->
@@ -67,9 +87,9 @@
 	  	     	    <h2 class="product_tit clearfix">
 	  	     	       <em class="proall fl">全部理财产品</em>
 	  	     	       <div class="clearfix fl">
-	  	     	       <span class="product_curspan"><img src="images/invest_pic01.png"> 新手体验标</span>
-	  	     	       <span><img src="images/invest_pic02.png"> 项目列表</span>
-	  	     	       <span><img src="images/invest_pic03.png"> 债权转让</span>
+	  	     	       <span class="product_curspan"><img src="images/invest_pic01.png" onclick="show1()"> 新手体验标</span>
+	  	     	       <span><img src="images/invest_pic02.png" onclick="show2()"> 项目列表</span>
+	  	     	       <span><img src="images/invest_pic03.png" onclick="show3()"> 债权转让</span>
 	  	     	       </div>
 	  	     	      
 	  	     	    </h2>
@@ -84,11 +104,25 @@
 	  	     	    	  </div>
 	  	     	    	  <!--  -->
 	  	     	    	  <div class="product_list" style="display:none;">
-	  	     	    	  	  2
+	  	     	    	  	  <div>
+								  <div class="invest_prochoose">
+									  <p><span>项目期限：</span><a href="#" class="inpro_cura">不限</a><a href="#">小于1个月</a><a href="#">1-3个月</a><a href="#">4-6个月</a><a href="#">7-12个月</a></p>
+									  <p><span>项目状态：</span><a href="#" class="inpro_cura">不限</a><a href="#">所有借款</a><a href="#">正在招标的借款</a><a href="#">已成功借款</a><a href="#">已完成借款</a></p>
+									  <p><span>项目收益：</span><a href="#" class="inpro_cura">不限</a><a href="#">10%以下</a><a href="#">10%-15%</a><a href="#">15%-20%</a><a href="#">20%-30%</a></p>
+									  <p><span>项目类型：</span><a href="#" class="inpro_cura">不限</a><a href="#">信用标</a><a href="#">抵押标</a></p>
+								  </div>
+							  </div>
 	  	     	    	  </div>
 	  	     	    	  <!--  -->
 	  	     	    	  <div class="product_list" style="display:none;">
-	  	     	    	  	  3
+							  <div>
+								  <div class="invest_prochoose">
+									  <p><span>项目期限：</span><a href="#" class="inpro_cura">不限</a><a href="#">小于1个月</a><a href="#">1-3个月</a><a href="#">4-6个月</a><a href="#">7-12个月</a></p>
+									  <p><span>项目状态：</span><a href="#" class="inpro_cura">不限</a><a href="#">所有借款</a><a href="#">正在招标的借款</a><a href="#">已成功借款</a><a href="#">已完成借款</a></p>
+									  <p><span>项目收益：</span><a href="#" class="inpro_cura">不限</a><a href="#">10%以下</a><a href="#">10%-15%</a><a href="#">15%-20%</a><a href="#">20%-30%</a></p>
+									  <p><span>项目类型：</span><a href="#" class="inpro_cura">不限</a><a href="#">信用标</a><a href="#">抵押标</a></p>
+								  </div>
+							  </div>
 	  	     	    	  </div>
 	  	     	    	  <!--  -->
 
@@ -101,116 +135,19 @@
 	  	    <span>发布时间<img src="images/invest_jiantou.png" alt=""></span>
 	  	    <span>项目期限<img src="images/invest_jiantou.png" alt=""></span>
 	  	    </h3>
-	  	    <div class="product_list mt20">
-	  	    	     <div class="prolist_one prolist_one_bl01 mt20">
-	  	    	           <h2 class="prolist_one_tit"><span>抵押</span>汽车销售服务企业补充流动资金（三期）
-                           </h2>
-                           <ul class="prolist_one_ul clearfix">
-                           	   <li>
-                           	   	   年华收益：<strong>12.49%</strong><br>
-                           	   	   还款方式：按月付息，到期还本
-                           	   </li>
-                           	   <li>
-                           	   	   剩余期限：<i>308</i>天<br>
-                                    保障机构：中融兴业融资担保有限公司
-                           	   </li>
-                           	   <li class="prolist_press">
-                           	   	   募集金额：<strong>9,900.00</strong> 元 <br>
-                                   认购进度：<span class="ui-progressbar-mid ui-progressbar-mid-100">100%</span>
-                           	   </li>
-                           	   <li class="prolist_btn">
-                           	   	    <a href="detail.html?id=1" class="pro_btn">立即投资</a>
-                           	   </li>
-                           </ul>
-	  	             </div>
-	  	             <!-- end one -->
-	  	             <div class="prolist_one prolist_one_bl01 mt20">
-	  	    	           <h2 class="prolist_one_tit"><span>抵押</span>汽车销售服务企业补充流动资金（三期）
-                           </h2>
-                           <ul class="prolist_one_ul clearfix">
-                           	   <li>
-                           	   	   年华收益：<strong>12.49%</strong><br>
-                           	   	   还款方式：按月付息，到期还本
-                           	   </li>
-                           	   <li>
-                           	   	   剩余期限：<i>308</i>天<br>
-                                    保障机构：中融兴业融资担保有限公司
-                           	   </li>
-                           	   <li class="prolist_press">
-                           	   	   募集金额：<strong>9,900.00</strong> 元 <br>
-                                   认购进度：<span class="ui-progressbar-mid ui-progressbar-mid-100">100%</span>
-                           	   </li>
-                           	   <li class="prolist_btn">
-                           	   	    <a href="11112/detail.html" class="pro_btn">立即投资</a>
-                           	   </li>
-                           </ul>
-	  	             </div>
-	  	             <!-- end one -->
-	  	             <div class="prolist_one prolist_one_bl02 mt20">
-	  	    	           <h2 class="prolist_one_tit"><span class="pro_spanbg02">抵押</span>汽车销售服务企业补充流动资金（三期）
-                           </h2>
-                           <ul class="prolist_one_ul clearfix">
-                           	   <li>
-                           	   	   年华收益：<strong>12.49%</strong><br>
-                           	   	   还款方式：按月付息，到期还本
-                           	   </li>
-                           	   <li>
-                           	   	   剩余期限：<i>308</i>天<br>
-                                    保障机构：中融兴业融资担保有限公司
-                           	   </li>
-                           	   <li class="prolist_press">
-                           	   	   募集金额：<strong>9,900.00</strong> 元 <br>
-                                   认购进度：<span class="ui-progressbar-mid ui-progressbar-mid-100">100%</span>
-                           	   </li>
-                           	   <li class="prolist_btn">
-                           	   	    <a href="11112/detail.html" class="pro_btn">立即投资</a>
-                           	   </li>
-                           </ul>
-	  	             </div>
-	  	             <!-- end one -->
-	  	             <div class="prolist_one prolist_one_bl02 mt20">
-	  	    	           <h2 class="prolist_one_tit"><span class="pro_spanbg02">抵押</span>汽车销售服务企业补充流动资金（三期）
-                           </h2>
-                           <ul class="prolist_one_ul clearfix">
-                           	   <li>
-                           	   	   年华收益：<strong>12.49%</strong><br>
-                           	   	   还款方式：按月付息，到期还本
-                           	   </li>
-                           	   <li>
-                           	   	   剩余期限：<i>308</i>天<br>
-                                    保障机构：中融兴业融资担保有限公司
-                           	   </li>
-                           	   <li class="prolist_press">
-                           	   	   募集金额：<strong>9,900.00</strong> 元 <br>
-                                   认购进度：<span class="ui-progressbar-mid ui-progressbar-mid-100">100%</span>
-                           	   </li>
-                           	   <li class="prolist_btn">
-                           	   	    <a href="11112/detail.html" class="pro_btn">立即投资</a>
-                           	   </li>
-                           </ul>
-	  	             </div>
-	  	             <!-- end one -->
-                     <div class="prolist_one prolist_one_bl03 mt20">
-	  	    	           <h2 class="prolist_one_tit"><span class="pro_spanbg03">抵押</span>汽车销售服务企业补充流动资金（三期）
-                           </h2>
-                           <ul class="prolist_one_ul clearfix">
-                           	   <li>
-                           	   	   年华收益：<strong>12.49%</strong><br>
-                           	   	   还款方式：按月付息，到期还本
-                           	   </li>
-                           	   <li>
-                           	   	   剩余期限：<i>308</i>天<br>
-                                    保障机构：中融兴业融资担保有限公司
-                           	   </li>
-                           	   <li class="prolist_press">
-                           	   	   募集金额：<strong>9,900.00</strong> 元 <br>
-                                   认购进度：<span class="ui-progressbar-mid ui-progressbar-mid-100">100%</span>
-                           	   </li>
-                           	   <li class="prolist_btn">
-                           	   	    <a href="11112/detail.html" class="pro_btn">立即投资</a>
-                           	   </li>
-                           </ul>
-	  	             </div>
+	  	    <div class="product_list mt20" >
+					<div id="investProjectList">
+
+					</div>
+
+					<div id="investProjectList2" style="display:none;">
+						项目列表
+					</div>
+
+					<div id="investProjectList3" style="display:none;">
+						债权转让
+					</div>
+
 	  	             <!-- end one -->
 	  	             <div class="prolist_one prolist_one_bl03 prolist_onebg mt20">
 	  	    	           <h2 class="prolist_one_tit"><span class="pro_spanbg03">抵押</span>汽车销售服务企业补充流动资金（三期）
@@ -234,16 +171,31 @@
                            </ul>
 	  	             </div>
 	  	             <!-- end one -->
+
 	  	             <!-- pagelink -->
-	  	              <p class="pagelink">
-	  	                 <a href="#" class="pglink_cura">1</a>
+	  	              <p class="notic_pagelink" id="p">
+	  	                <!-- <a href="#" class="pglink_cura">1</a>
 	  	                 <a href="#">2</a>
 	  	                 <a href="#">3</a>
-	  	                 <a href="#">下一页</a>
+	  	                 <a href="#">下一页</a>-->
 	  	              </p>
 	  	             <!-- pagelink end -->
 	  	            
 	  	    </div>
+		 <!-- <div class="product_list" style="display:none;">
+			  <div id="investProjectList2">
+				  项目列表
+			  </div>
+		  </div>
+		  &lt;!&ndash;  &ndash;&gt;
+		  <div class="product_list" style="display:none;">
+			  <div id="investProjectList3">
+				  债权转让
+			  </div>
+		  </div>-->
+
+		  <div id="zzz"></div>
+
 	  </div>
 </div>
 <!-- footer start -->
@@ -286,7 +238,7 @@
 
 <div class="zscf_bottom_wper">
 	<div class="zscf_bottom px1000 clearfix">
-		  <p class="fl">© 2014 zhongxincaifu &nbsp;  &nbsp;&nbsp;   中兴财富金融信息服务股份有限公司 &nbsp;&nbsp;&nbsp;    来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+		  <p class="fl">© 2019 zhongxincaifu &nbsp;  &nbsp;&nbsp;   中兴财富金融信息服务股份有限公司 &nbsp;&nbsp;&nbsp;    来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
 		  <p class="fr">
 		    <a href="#"><img src="images/360.png" alt=""></a>
 		    <a href="#"><img src="images/kexin.png" alt=""></a>
@@ -295,5 +247,79 @@
 	</div>
 </div>
 <!-- footer end -->
+
+<script>
+	function showAllInvestProject(data) {
+
+		var InvestProjectList = data.list;
+
+		var str = "";
+
+		var pages = data.pages;
+
+		var a = "";
+		// p标签
+		var p = $("#p");
+
+		for (var i = 0; i < InvestProjectList.length; i++){
+
+			str = "<div class=\"prolist_one prolist_one_bl01 mt20\"><h2 class=\"prolist_one_tit\"><span>"+InvestProjectList[i].type+"</span>"+InvestProjectList[i].title+"</h2>\n" +
+					"<ul class=\"prolist_one_ul clearfix\">\n" +
+					"<li>年华收益：<strong>"+InvestProjectList[i].yearHaving+"%</strong><br>还款方式："+InvestProjectList[i].payMethod+"</li>\n" +
+					"<li>剩余期限：<i>"+InvestProjectList[i].remainder+"</i>天<br>保障机构："+InvestProjectList[i].agencies+"</li>\n" +
+					"<li class=\"prolist_press\">募集金额：<strong>"+InvestProjectList[i].money+"</strong> 元 <br>认购进度：<span class=\"ui-progressbar-mid ui-progressbar-mid-100\">"+InvestProjectList[i].planing+"%</span></li>\n" +
+					"<li class=\"prolist_btn\"><a href=\"11112/detail.html\" class=\"pro_btn\">立即投资</a></li></ul></div>"
+
+			$("#investProjectList").append(str);
+			$("#investProjectList2").append(str);
+			$("#investProjectList3").append(str);
+		}
+
+		for (var j = 1; j <= pages; j++) {
+			if ( j == data.pageNum) {
+				a = "<a id='a"+j+"' href=\"#\" class=\"notic_acur\" onclick='investProjectList1(" + data.pageSize + ","+j+")'>" + j + "</a>";
+			} else {
+				a = a = "<a id='a"+j+"' href=\"#\" class=\"\" onclick='investProjectList1(" + data.pageSize + ","+j+")'>" + j + "</a>";
+			}
+			p.append(a);
+		}
+		var next = "<a href=\"#\" onclick='investProjectList1(" + data.pageSize + ","+data.nextPage+")'>下一页</a>";
+		var end = "<a href=\"#\" onclick='investProjectList1(" + data.pageSize + ","+data.lastPage+")'>尾页</a>";
+		p.append(next+end);
+	}
+
+	//分页ajax
+	function investProjectList1(pageSize,page) {
+		$.get("invest/showInvestProject", {"page": page, "pageSize": pageSize}, function (data) {
+			//$("#noticeUl").empty();
+			$("#investProjectList").empty();
+			$("#investProjectList2").empty();
+			$("#investProjectList3").empty();
+			$("#p").empty();
+			showAllInvestProject(data);
+		});
+	}
+
+	function show1() {
+
+		$("#investProjectList").show();
+		$("#investProjectList2").hide();
+		$("#investProjectList3").hide();
+	}
+
+	function show2() {
+
+		$("#investProjectList").hide();
+		$("#investProjectList2").show();
+		$("#investProjectList3").hide();
+	}
+
+	function show3() {
+
+		$("#investProjectList").hide();
+		$("#investProjectList2").hide();
+		$("#investProjectList3").show();
+	}
+</script>
 </body>
 </html>
