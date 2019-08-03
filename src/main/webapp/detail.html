@@ -31,6 +31,8 @@
             var id = GetQueryString("id");
             // 拼接字符串使用
             var a = "";
+            $.get("selectProjectDetailById", {"id": id}, function (data) {
+                //alert(1111);
             $.get("project/selectProjectDetailById", {"id": id}, function (data) {
                 a = " <div class=\"detail_introl_tit clearfix\">" +
                     "                    <div class=\"det_introl_tit_l fl\">\n" +
