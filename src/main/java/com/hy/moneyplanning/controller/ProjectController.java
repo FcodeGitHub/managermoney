@@ -1,13 +1,9 @@
 package com.hy.moneyplanning.controller;
 
-import com.hy.moneyplanning.pojo.Dynamic;
-import com.hy.moneyplanning.pojo.News;
-import com.hy.moneyplanning.pojo.Project;
+import com.hy.moneyplanning.pojo.*;
 import com.hy.moneyplanning.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -48,6 +44,22 @@ public class ProjectController {
         List<News> newsList = projectService.newsList();
 
         return newsList;
+    }
+
+    //查询网站公告
+    @RequestMapping("/webInfo")
+    public List<Notice> showInfo(){
+
+            List<Notice> webInfoList = projectService.showInfo();
+        return webInfoList;
+    }
+
+    //排行榜展示
+    @RequestMapping("/showTop")
+    public List<Top> showTop(){
+
+        List<Top> topList = projectService.showTop();
+        return topList;
     }
 
 

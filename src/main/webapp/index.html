@@ -83,6 +83,7 @@
 		}
 
 		//媒体报道展示
+
 		$(function () {
 			$.ajax({
 				url:"project/newsList",
@@ -105,6 +106,64 @@
 
 				str = "<li><a href=\"#\">"+data[i].info+"</a></li>"
 				$("#News").append(str);
+
+			}
+		}
+
+		//展示网页公告
+		$(function () {
+			$.ajax({
+				url:"project/webInfo",
+				type:"post",
+				dataType:"json",
+				success:function (data) {
+					showInfo(data);
+				},
+				error:function (msg) {
+					alert("ajax异常" + msg);
+				}
+			});
+		});
+
+		//展示网页公告
+		function showInfo(data) {
+
+			var str = "";
+			for (var i = 0; i < 5; i++){
+
+				str ="<li><span>"+ data[i].title +"</span><em>"+ data[i].infoDate+"</em></li>"
+				$("#infoList").append(str);
+			}
+		}
+
+		//展示排行榜
+		$(function () {
+			$.ajax({
+				url:"project/showTop",
+				type:"post",
+				dataType:"json",
+				success:function (data) {
+					showTopList(data);
+				},
+				error:function (msg) {
+					alert("展示排行榜错误！！！" + msg);
+				}
+			});
+		});
+
+		function showTopList(data){
+
+			var str = "";
+			for (var i = 0; i < data.length; i++){
+
+				str = "<li>\n" +
+						"<em class=\"rank_bg04\">"+ data[i].num +"</em>\n" +
+						"<a href=\"#\">"+ data[i].username +"</a>\n" +
+						"<span>"+ data[i].money +"</span>\n" +
+						"<span>"+ data[i].invested +"</span>\n" +
+						"<span>"+ data[i].yield +"</span>\n" +
+						"</li>"
+				$("#topList").append(str);
 			}
 		}
 	</script>
@@ -195,11 +254,11 @@
 		      	 <!-- end l -->
 		      	  <div class="block1_r fl">
 		      	  	  <h2 class="block1_r_tit clearfix"><span>网站公告</span><a href="noticelist.html">+</a></h2>
-		      	  	  <ul>
+		      	  	  <ul id="infoList">
+		      	  	  	 <!-- <li><span>关于新手体验</span><em>06-19</em></li>
 		      	  	  	  <li><span>关于新手体验</span><em>06-19</em></li>
 		      	  	  	  <li><span>关于新手体验</span><em>06-19</em></li>
-		      	  	  	  <li><span>关于新手体验</span><em>06-19</em></li>
-		      	  	  	  <li><span>关于新手体验</span><em>06-19</em></li>
+		      	  	  	  <li><span>关于新手体验</span><em>06-19</em></li>-->
 
 		      	  	  </ul>
 		      	  </div>
@@ -300,7 +359,7 @@
          <!-- end block4 -->
          <div class="zscf_block5 mt30 clearfix">
          	    <div class="zscf_block5_l fl mr20">
-         	    	<h2 class="block3_tit clearfix block5_l_tit"><span class="block3_curspan news_span">行业动态</span><em><img src="images/shu.png" alt=""></em><span class="news_span">媒体报道</span><a href="#">更多></a></h2>
+         	    	<h2 class="block3_tit clearfix block5_l_tit"><span class="block3_curspan news_span" id="dList" onclick="showDynamicList()">行业动态</span><em><img src="images/shu.png" alt=""></em><span class="news_span" id="nList" onclick="showNewList()">媒体报道</span><a href="#">更多></a></h2>
          	    	<div class="block5_box">
 
 	         	    	<ul class="news_ul" id="dynamicsList">
@@ -316,46 +375,15 @@
          	    	 <h2 class="block5_r_tit clearfix"><span class="fl ">投资排行榜</span><em class="fr block5_r_tit_em"><a href="javascript:;" class="brt_acur">月排行</a><a href="javascript:;">周排行</a><a href="javascript:;">总排行</a></em></h2>
          	    	 <div class="rank_box">
          	    	 	  <div class="rank_list">
-         	    	 	  	    <ul class="rank_list_ul">
-         	    	 	  	    	 <li>
+         	    	 	  	    <ul class="rank_list_ul" id="topList">
+         	    	 	  	    	 <!--<li>
          	    	 	  	    	 	 <em class="rank_bg01">1</em>
          	    	 	  	    	 	 <a href="#">llsdfasd</a>
          	    	 	  	    	 	 <span>￥132423</span>
          	    	 	  	    	 	 <span>99</span>
          	    	 	  	    	 	 <span>1233%</span>
-         	    	 	  	    	 </li> 
-         	    	 	  	    	 <li>
-         	    	 	  	    	 	 <em class="rank_bg02">1</em>
-         	    	 	  	    	 	 <a href="#">llsdfasd</a>
-         	    	 	  	    	 	 <span>￥132423</span>
-         	    	 	  	    	 	 <span>99</span>
-         	    	 	  	    	 	 <span>1233%</span>
          	    	 	  	    	 </li>
-         	    	 	  	    	 <li>
-         	    	 	  	    	 	 <em class="rank_bg03">1</em>
-         	    	 	  	    	 	 <a href="#">llsdfasd</a>
-         	    	 	  	    	 	 <span>￥132423</span>
-         	    	 	  	    	 	 <span>99</span>
-         	    	 	  	    	 	 <span>1233%</span>
-         	    	 	  	    	 </li>
-                                      
-                                      <li>
-         	    	 	  	    	 	 <em class="rank_bg04">1</em>
-         	    	 	  	    	 	 <a href="#">llsdfasd</a>
-         	    	 	  	    	 	 <span>￥132423</span>
-         	    	 	  	    	 	 <span>99</span>
-         	    	 	  	    	 	 <span>1233%</span>
-         	    	 	  	    	 </li>
-                                      
-                                      <li>
-         	    	 	  	    	 	 <em class="rank_bg04">1</em>
-         	    	 	  	    	 	 <a href="#">llsdfasd</a>
-         	    	 	  	    	 	 <span>￥132423</span>
-         	    	 	  	    	 	 <span>99</span>
-         	    	 	  	    	 	 <span>1233%</span>
-         	    	 	  	    	 </li>
-                                      
-                                      
+                                      -->
          	    	 	  	    </ul>
          	    	 	  </div>
          	    	 	  <!-- end --> 
@@ -460,5 +488,21 @@
 	</div>
 </div>
 <!-- footer end -->
+<script>
+	function showNewList() {
+
+		//alert("888888");
+		$("#dynamicsList").hide();
+		$("#News").show();
+	}
+</script>
+
+<script>
+	function showDynamicList() {
+
+		$("#dynamicsList").show();
+		$("#News").hide();
+	}
+</script>
 </body>
 </html>
