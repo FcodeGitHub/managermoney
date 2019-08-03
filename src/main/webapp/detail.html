@@ -26,8 +26,54 @@
             var id = GetQueryString("id");
             // 拼接字符串使用
             var a = "";
-            $.get("selectProjectDetailById", {"id": id}, function (data) {
-                alert(1111);
+            $.get("project/selectProjectDetailById", {"id": id}, function (data) {
+                a = " <div class=\"detail_introl_tit clearfix\">" +
+                    "                    <div class=\"det_introl_tit_l fl\">\n" +
+                    "                        <span>抵押</span> "+data.projectName+"" +
+                    "                    </div>\n" +
+                    "                    <!-- end l -->\n" +
+                    "                    <div class=\"det_introl_tit_r fr\">\n" +
+                    "                        保障级别：A级 <img src=\"images/det_wenhao.png\" alt=\"\">\n" +
+                    "                    </div>\n" +
+                    "                </div>\n" +
+                    "                <!-- end tit -->\n" +
+                    "                <div class=\"det_intro_text mr20\">\n" +
+                    "                    <ul class=\"det_intro_tul clearfix\">\n" +
+                    "                        <li>\n" +
+                    "                            年华收益<br>\n" +
+                    "                            <span style=\"color:#ff7112;\">\n" +
+                    "\t  \t     \t    \t  \t    <strong>"+data.yearsHaving+"</strong> 年华\n" +
+                    "                                </span>\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            项目期限<br>\n" +
+                    "                            <span>\n" +
+                    "                                <strong>"+months+"</strong>个月\n" +
+                    "                            </span>\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            项目规模<br>\n" +
+                    "                            <span>\n" +
+                    "                                <strong>1000</strong>万\n" +
+                    "                            </span>\n" +
+                    "                        </li>\n" +
+                    "                    </ul>\n" +
+                    "                    <!-- end  -->\n" +
+                    "                    <ul class=\"det_intro_tul2 clearfix\">\n" +
+                    "                        <li>\n" +
+                    "                            发布日期：2015-07-08\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            还款方式：按月付息，到期还本\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            还款日期：2016-07-11\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            保障机构：北京国能小额贷款股份公司\n" +
+                    "                        </li>\n" +
+                    "                    </ul>\n" +
+                    "                </div>";
                 $("#showProject").append(a);
             });
         });
@@ -84,53 +130,7 @@
     <div class="zxcf_detail px1000">
         <div class="detail_intro clearfix">
             <div class="detail_intro_l fl" id="showProject">
-                <div class="detail_introl_tit clearfix">
-                    <div class="det_introl_tit_l fl">
-                        <span>抵押</span> 购车借款23万第2标13万
-                    </div>
-                    <!-- end l -->
-                    <div class="det_introl_tit_r fr">
-                        保障级别：A级 <img src="images/det_wenhao.png" alt="">
-                    </div>
-                </div>
-                <!-- end tit -->
-                <div class="det_intro_text mr20">
-                    <ul class="det_intro_tul clearfix">
-                        <li>
-                            年华收益<br>
-                            <span style="color:#ff7112;">
-	  	     	    	  	    <strong>12</strong>% 年华
-                                </span>
-                        </li>
-                        <li>
-                            项目期限<br>
-                            <span>
-                                <strong>12</strong>个月
-                            </span>
-                        </li>
-                        <li>
-                            项目规模<br>
-                            <span>
-                                <strong>1000</strong>万
-                            </span>
-                        </li>
-                    </ul>
-                    <!-- end  -->
-                    <ul class="det_intro_tul2 clearfix">
-                        <li>
-                            发布日期：2015-07-08
-                        </li>
-                        <li>
-                            还款方式：按月付息，到期还本
-                        </li>
-                        <li>
-                            还款日期：2016-07-11
-                        </li>
-                        <li>
-                            保障机构：北京国能小额贷款股份公司
-                        </li>
-                    </ul>
-                </div>
+
                 <!-- end text -->
             </div>
             <div class="detail_intro_r fr">
