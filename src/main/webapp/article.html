@@ -13,6 +13,17 @@
    EvPNG.fix('div, ul, img, li, input,span, p');
 </script>
 <![endif]-->
+
+	<script>
+		//需要获取到浏览器后面的id值，然后发送ajax请求给controller
+		function GetQueryString(name)
+		{
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+			if(r!=null)return  unescape(r[2]); return null;
+		}
+	</script>
+
 </head>
 <body>
 <!-- header start -->
@@ -104,8 +115,18 @@
 
 <script>
 	$(function () {
+		var id = GetQueryString("id");
 		$.ajax({
-			
+			url:"article/showInfo",
+			data:{"id": id},
+			type:"post",
+			dataType:"json",
+			success:function (data) {
+				showArticle(data);
+			},
+			error:function (msg) {
+				alert("显示公告信息出错了" + msg);
+			}
 		});
 	});
 </script>
