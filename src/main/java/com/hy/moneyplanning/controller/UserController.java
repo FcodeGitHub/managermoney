@@ -35,9 +35,13 @@ public class UserController {
      * 注册
      */
     @RequestMapping("/register")
-    public int register(User user) {
+    public String register(User user) {
         // 调用方法查询
-        int result = userService.register(user);
-       return result;
+        boolean result = userService.register(user);
+        if (result){
+            return "success";
+        }else{
+            return "false";
+        }
     }
 }

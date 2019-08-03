@@ -10,7 +10,7 @@ public interface UserService {
     List<User> validateName();
 
     //注册
-    int register(User user);
+    boolean register(User user);
 
 
 }

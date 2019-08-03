@@ -19,9 +19,19 @@ public class UserServiceImpl implements UserService {
         return userMapper.validateName();
     }
 
+    //注册
     @Override
-    public int register(User user) {
-
-        return userMapper.register(user);
+    public boolean register(User user) {
+        boolean result = userMapper.register(user);
+        if (result){
+            return true;
+        }else {
+            return false;
+        }
     }
+
+
+
+
+
 }
