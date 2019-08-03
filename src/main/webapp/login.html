@@ -13,6 +13,20 @@
    EvPNG.fix('div, ul, img, li, input,span, p');
 </script>
 <![endif]-->
+	<script>
+		function login() {
+		 	var date = $("#form01").serialize();
+		 	var username = $("#username01").val()
+			$.post("login",date,function (data) {
+				if (data == "success"){
+					location.href="index.html?username="+username;
+				} else {
+					alert("登录失败")
+				}
+		 	})
+		}
+
+	</script>
 </head>
 <body>
 <!-- header start -->
@@ -26,7 +40,7 @@
 		    <a href="#"><img src="images/zxcf_qq.png" alt=""></a>
 		 </div>
 		 <div class="zxcf_top_r fr">
-		 	<a href="login.html" class="curspan">立即登录</a>
+		 	<a href="login.html"  class="curspan" >立即登录</a>
 		 	<span>|</span>
 		 	<a href="register.html">免费注册</a>
 		 	<span>|</span>
@@ -58,16 +72,16 @@
 	  	   	     	      <span class="fl">登录</span>
 	  	   	     	      <em class="fr">没有帐号，<a href="register.html">立即注册</a></em>
 	  	   	     	   </h2>
-	  	   	     	   <form>
+	  	   	     	   <form id="form01">
 	  	   	     	   	    <fieldset>
 	  	   	     	   	    	  <p class="mt20">
-	  	   	     	   	    	  	 <input type="text" placeholder="用户名/手机" class="lg_input01 lg_input">
+	  	   	     	   	    	  	 <input type="text"id="username01"  name="username" placeholder="用户名/手机" class="lg_input01 lg_input">
 	  	   	     	   	    	  </p>
                                   <p class="mt20">
-	  	   	     	   	    	  	 <input type="text" placeholder="密码" class="lg_input02 lg_input">
+	  	   	     	   	    	  	 <input type="password" name="password" placeholder="密码" class="lg_input02 lg_input">
 	  	   	     	   	    	  </p>
                                  <p class="clearfix lg_check"><span class="fl"><input type="checkbox">记住用户名</span><a href="#" class="fr">忘记密码？找回</a></p>
-                                 <p><a href="#" class="lg_btn">立即登陆</a></p>
+                                 <p><a href="#" onclick="login()" class="lg_btn">立即登陆</a></p>
 	  	   	     	   	    </fieldset>
 	  	   	     	   </form>
 	  	   	     </div>
