@@ -60,4 +60,17 @@ public class ProjectServiceImpl implements ProjectService {
         controlInfo.setRiskControl(riskControl);
         return controlInfo;
     }
+
+    @Override
+    public Manage selectManage(int id) {
+        Manage manage = projectMapper.selectManage(id);
+        List<Repay> repayList = projectMapper.selectRepay(manage.getId());
+        manage.setRepayList(repayList);
+        return manage;
+    }
+
+    @Override
+    public List<RecordUser> selectRecord(int id) {
+        return projectMapper.selectRecord(id);
+    }
 }

@@ -44,4 +44,16 @@
     <select id="selectRiskControl" parameterType="int" resultType="RiskControl">
         select * from riskControl where id = #{riskcontrolId}
     </select>
+
+    <select id="selectManage" parameterType="int" resultType="Manage">
+        select * from manage where projectId = #{id}
+    </select>
+
+    <select id="selectRepay" parameterType="int" resultType="Repay">
+        select * from repay where manageId = #{id}
+    </select>
+
+    <select id="selectRecord" parameterType="int" resultType="RecordUser">
+        select * from record_user where projectId = #{id}
+    </select>
 </mapper>

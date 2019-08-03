@@ -28,4 +28,14 @@ public interface ProjectService {
      * 通过项目id查询风控信息
      */
     ControlInfo selectControlInfo(int id);
+
+    /**
+     * 通过项目id查询贷后管理
+     */
+    Manage selectManage(int id);
+
+    /**
+     * 通过项目id查询投标记录
+     */
+    List<RecordUser> selectRecord(int id);
 }

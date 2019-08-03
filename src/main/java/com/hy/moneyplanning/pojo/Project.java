@@ -1,7 +1,5 @@
 package com.hy.moneyplanning.pojo;
 
-import java.util.Date;
-
 public class Project {
 
     private int id;
@@ -14,6 +12,7 @@ public class Project {
     private String needMoney;
     private String repaymentType;
     private String guarantee;
+    private String perMoney;
 
     public Project() {
     }
@@ -104,6 +103,14 @@ public class Project {
 
     public void setGuarantee(String guarantee) {
         this.guarantee = guarantee;
+    }
+
+    public String getPerMoney() {
+        return perMoney;
+    }
+
+    public void setPerMoney(String perMoney) {
+        this.perMoney = perMoney;
     }
 
     @Override

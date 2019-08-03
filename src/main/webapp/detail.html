@@ -31,6 +31,7 @@
             var id = GetQueryString("id");
             // 拼接字符串使用
             var a = "";
+            var b = "";
             $.get("project/selectProjectDetailById", {"id": id}, function (data) {
                 a = " <div class=\"detail_introl_tit clearfix\">" +
                     "                    <div class=\"det_introl_tit_l fl\">\n" +
@@ -79,9 +80,23 @@
                     "                        </li>\n" +
                     "                    </ul>\n" +
                     "                </div>";
+                b = " <h2 class=\"det_intro_h2 clearfix\"><span class=\"fl\">投资进度:</span><em class=\"fr\">46.05%</em></h2>\n" +
+                    "                <div class=\"jklb_press_wper\">\n" +
+                    "                    <div class=\"jklb_press\" style=\"width:46.05%\">\n" +
+                    "\n" +
+                    "                    </div>\n" +
+                    "                </div>\n" +
+                    "                <!--  -->\n" +
+                    "                <p class=\"det_rzye clearfix\"><span class=\"fl\">融资余额</span><em\n" +
+                    "                        class=\"fr\"><strong>"+data.money+"</strong></em></p>\n" +
+                    "                <p class=\"det_input\">\n" +
+                    "                    <input type=\"text\" placeholder=\"100\">\n" +
+                    "                </p>\n" +
+                    "                <p class=\"det_shouyi\">每投资1万元收益<strong>"+data.perMoney+"</strong></p>\n" +
+                    "                <p><a href=\"#\" class=\" pro_btn det_btn\">立即投资</a></p>";
                 $("#showProject").append(a);
+                $("#invest").append(b);
                 projectClick();
-
             });
         });
 
@@ -91,6 +106,8 @@
             $.get("project/selectProjectById", {"id": id}, function (data) {
                 $("#projectSpan").addClass("det_tit_curspan");
                 $("#controlSpan").removeClass("det_tit_curspan");
+                $("#manageSpan").removeClass("det_tit_curspan");
+                $("#recordSpan").removeClass("det_tit_curspan");
                 showProjectDetail(data);
             });
         }
@@ -140,6 +157,8 @@
             $.get("project/selectControlInfo", {"id": id}, function (data) {
                 $("#controlSpan").addClass("det_tit_curspan");
                 $("#projectSpan").removeClass("det_tit_curspan");
+                $("#manageSpan").removeClass("det_tit_curspan");
+                $("#recordSpan").removeClass("det_tit_curspan");
                 var controlInfo = "<div class=\"det_proone_l\">\n" +
                     "                            <h2 class=\"det_proone_tit\">项目评估</h2>\n" +
                     "                            <!--  -->\n" +
@@ -238,168 +257,102 @@
         // 贷后管理展示
         function showManage() {
             var id = GetQueryString("id");
-            var manage = "<div class=\"det_proone_l\">\n" +
-                "                            <h2 class=\"det_proone_tit\">放款通知</h2>\n" +
-                "                            <p class=\"dhgl_p1\"><img src=\"images/1.jpg\" alt=\"\">融资成功,企业正在还款</p>\n" +
-                "                            <h2 class=\"det_proone_tit\">还款概况</h2>\n" +
-                "                            <ul class=\"dhgl_ul\">\n" +
-                "                                <li>\n" +
-                "                                    <img src=\"images/2.jpg\" alt=\"\">\n" +
-                "                                    <span>应付利息</span>\n" +
-                "                                    <span>123213.4元（12期）</span>\n" +
-                "                                </li>\n" +
-                "                                <li>\n" +
-                "                                    &nbsp;<img src=\"images/3.jpg\" alt=\"\">\n" +
-                "                                    <span>应付利息</span>\n" +
-                "                                    <span>123213.4元（12期）</span>\n" +
-                "                                </li>\n" +
-                "                                <li>\n" +
-                "                                    &nbsp;<img src=\"images/4.jpg\" alt=\"\">\n" +
-                "                                    <span>应付利息</span>\n" +
-                "                                    <span>123213.4元（12期）</span>\n" +
-                "                                </li>\n" +
-                "                                <li>\n" +
-                "                                    <img src=\"images/5.jpg\" alt=\"\">\n" +
-                "                                    <span>应付利息</span>\n" +
-                "                                    <span>123213.4元（12期）</span>\n" +
-                "                                </li>\n" +
-                "\n" +
-                "                            </ul>\n" +
-                "                            <h2 class=\"det_proone_tit\">还款明细</h2>\n" +
-                "                            <div class=\"pl20 pr20 pt20\">\n" +
-                "                                <table class=\"dhgl_table\">\n" +
-                "                                    <tr style=\"border-bottom:none;\">\n" +
-                "                                        <th>还款日期</th>\n" +
-                "                                        <th>还款类型</th>\n" +
-                "                                        <th>还款金额</th>\n" +
-                "                                        <th>还款状态</th>\n" +
-                "                                    </tr>\n" +
-                "                                    <tr>\n" +
-                "                                        <td>2015-11</td>\n" +
-                "                                        <td>利息</td>\n" +
-                "                                        <td>82333.23元</td>\n" +
-                "                                        <td>未到期</td>\n" +
-                "                                    </tr>\n" +
-                "                                    <tr>\n" +
-                "                                        <td>2015-11</td>\n" +
-                "                                        <td>利息</td>\n" +
-                "                                        <td>82333.23元</td>\n" +
-                "                                        <td>未到期</td>\n" +
-                "                                    </tr>\n" +
-                "                                    <tr>\n" +
-                "                                        <td>2015-11</td>\n" +
-                "                                        <td>利息</td>\n" +
-                "                                        <td>82333.23元</td>\n" +
-                "                                        <td>未到期</td>\n" +
-                "                                    </tr>\n" +
-                "                                    <tr>\n" +
-                "                                        <td>2015-11</td>\n" +
-                "                                        <td>利息</td>\n" +
-                "                                        <td>82333.23元</td>\n" +
-                "                                        <td>未到期</td>\n" +
-                "                                    </tr>\n" +
-                "                                    <tr>\n" +
-                "                                        <td>2015-11</td>\n" +
-                "                                        <td>利息</td>\n" +
-                "                                        <td>82333.23元</td>\n" +
-                "                                        <td>未到期</td>\n" +
-                "                                    </tr>\n" +
-                "                                    <tr>\n" +
-                "                                        <td>2015-11</td>\n" +
-                "                                        <td>利息</td>\n" +
-                "                                        <td>82333.23元</td>\n" +
-                "                                        <td>未到期</td>\n" +
-                "                                    </tr>\n" +
-                "                                </table>\n" +
-                "                            </div>\n" +
-                "\n" +
-                "                        </div>";
-            $("#divAll").empty();
-            $("#divAll").append(manage);
+            $.get("project/selectManage", {"id": id}, function (data) {
+                $("#controlSpan").removeClass("det_tit_curspan");
+                $("#projectSpan").removeClass("det_tit_curspan");
+                $("#manageSpan").addClass("det_tit_curspan");
+                $("#recordSpan").removeClass("det_tit_curspan");
+                var manage = "<div class=\"det_proone_l\">\n" +
+                    "                            <h2 class=\"det_proone_tit\">放款通知</h2>\n" +
+                    "                            <p class=\"dhgl_p1\"><img src=\"images/1.jpg\" alt=\"\">" + data.info + "</p>\n" +
+                    "                            <h2 class=\"det_proone_tit\">还款概况</h2>\n" +
+                    "                            <ul class=\"dhgl_ul\">\n" +
+                    "                                <li>\n" +
+                    "                                    <img src=\"images/2.jpg\" alt=\"\">\n" +
+                    "                                    <span>应付利息</span>\n" +
+                    "                                    <span>" + data.repaySum + "元（12期）</span>\n" +
+                    "                                </li>\n" +
+                    "                                <li>\n" +
+                    "                                    &nbsp;<img src=\"images/3.jpg\" alt=\"\">\n" +
+                    "                                    <span>应付利息</span>\n" +
+                    "                                    <span>" + data.repaySum + "元（12期）</span>\n" +
+                    "                                </li>\n" +
+                    "                                <li>\n" +
+                    "                                    &nbsp;<img src=\"images/4.jpg\" alt=\"\">\n" +
+                    "                                    <span>应付利息</span>\n" +
+                    "                                    <span>" + data.repaySum + "元（12期）</span>\n" +
+                    "                                </li>\n" +
+                    "                                <li>\n" +
+                    "                                    <img src=\"images/5.jpg\" alt=\"\">\n" +
+                    "                                    <span>应付利息</span>\n" +
+                    "                                    <span>" + data.repaySum + "元（12期）</span>\n" +
+                    "                                </li>\n" +
+                    "\n" +
+                    "                            </ul>\n" +
+                    "                            <h2 class=\"det_proone_tit\">还款明细</h2>\n" +
+                    "                            <div class=\"pl20 pr20 pt20\">\n" +
+                    "                                <table class=\"dhgl_table\" id='tab'>\n" +
+                    "                                    <tr style=\"border-bottom:none;\">\n" +
+                    "                                        <th>还款日期</th>\n" +
+                    "                                        <th>还款类型</th>\n" +
+                    "                                        <th>还款金额</th>\n" +
+                    "                                        <th>还款状态</th>\n" +
+                    "                                    </tr>\n" +
+                    "                                </table>\n" +
+                    "                            </div>\n" +
+                    "\n" +
+                    "                        </div>";
+                $("#divAll").empty();
+                $("#divAll").append(manage);
+                $(data.repayList).each(function () {
+                    var tr = "<tr>\n" +
+                        "<td>" + this.repayDate + "</td>\n" +
+                        "<td>" + this.repayType + "</td>\n" +
+                        "<td>" + this.repayMoney + "</td>\n" +
+                        "<td>" + this.repayState + "</td>\n" +
+                        "</tr>";
+                    $("#tab").append(tr);
+                });
+
+            });
         }
 
         // 投标记录展示
         function showRecord() {
             var id = GetQueryString("id");
-            var record = "<div class=\"det_proone_l\">\n" +
-                "                            <P class=\"det_tbjl_tit\">\n" +
-                "\t  \t     \t   \t            \t     <span class=\"mr30\"><img src=\"images/det_tbjl_pic01.png\" alt=\"\"> \n" +
-                "\t  \t     \t   \t            \t     目前总金额：￥21,122.00</span>\n" +
-                "                                <span><img src=\"images/det_tbjl_pic02.png\" alt=\"\">\n" +
-                "\t  \t     \t   \t            \t     剩余金额：￥123,123.00</span>\n" +
-                "                            </P>\n" +
-                "                            <table class=\"det_table\">\n" +
-                "                                <tr class=\"det_table_head\" style=\"height:40px;\">\n" +
-                "                                    <td>投资用户</td>\n" +
-                "                                    <td>投资金额</td>\n" +
-                "                                    <td class=\"det_w1160\">投资时间</td>\n" +
-                "                                    <td>状态</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "                                <tr>\n" +
-                "                                    <td>0****</td>\n" +
-                "                                    <td>10000.00元</td>\n" +
-                "                                    <td>2015-07-08 18:08:05</td>\n" +
-                "                                    <td>手动投标</td>\n" +
-                "                                </tr>\n" +
-                "\n" +
-                "                            </table>\n" +
-                "                        </div>";
-            $("#divAll").empty();
-            $("#divAll").append(record);
+            $.get("project/selectRecord",{"id":id},function (data) {
+                $("#controlSpan").removeClass("det_tit_curspan");
+                $("#projectSpan").removeClass("det_tit_curspan");
+                $("#manageSpan").removeClass("det_tit_curspan");
+                $("#recordSpan").addClass("det_tit_curspan");
+                var record = "<div class=\"det_proone_l\">\n" +
+                    "                            <P class=\"det_tbjl_tit\">\n" +
+                    "\t  \t     \t   \t            \t     <span class=\"mr30\"><img src=\"images/det_tbjl_pic01.png\" alt=\"\"> \n" +
+                    "\t  \t     \t   \t            \t     目前总金额：￥21,122.00</span>\n" +
+                    "                                <span><img src=\"images/det_tbjl_pic02.png\" alt=\"\">\n" +
+                    "\t  \t     \t   \t            \t     剩余金额：￥123,123.00</span>\n" +
+                    "                            </P>\n" +
+                    "                            <table class=\"det_table\" id='recordTable'>\n" +
+                    "                                <tr class=\"det_table_head\" style=\"height:40px;\">\n" +
+                    "                                    <td>投资用户</td>\n" +
+                    "                                    <td>投资金额</td>\n" +
+                    "                                    <td class=\"det_w1160\">投资时间</td>\n" +
+                    "                                    <td>状态</td>\n" +
+                    "                                </tr>\n" +
+                    "                            </table>\n" +
+                    "                        </div>";
+                $("#divAll").empty();
+                $("#divAll").append(record);
+                $(data).each(function () {
+                    var tr = "<tr>\n" +
+                        "<td>"+this.userName+"</td>\n" +
+                        "<td>"+this.money+".00元</td>\n" +
+                        "<td>"+this.createTime+"</td>\n" +
+                        "<td>"+this.state+"</td>\n" +
+                        "</tr>";
+                    $("#recordTable").append(tr);
+                });
+            });
         }
     </script>
 </head>
@@ -454,24 +407,10 @@
     <div class="zxcf_detail px1000">
         <div class="detail_intro clearfix">
             <div class="detail_intro_l fl" id="showProject">
-
                 <!-- end text -->
             </div>
-            <div class="detail_intro_r fr">
-                <h2 class="det_intro_h2 clearfix"><span class="fl">投资进度:</span><em class="fr">46.05%</em></h2>
-                <div class="jklb_press_wper">
-                    <div class="jklb_press" style="width:46.05%">
+            <div class="detail_intro_r fr" id="invest">
 
-                    </div>
-                </div>
-                <!--  -->
-                <p class="det_rzye clearfix"><span class="fl">融资余额</span><em
-                        class="fr"><strong>1,078,121.00</strong>元</em></p>
-                <p class="det_input">
-                    <input type="text" placeholder="100">
-                </p>
-                <p class="det_shouyi">每投资1万元收益<strong>183.33元</strong></p>
-                <p><a href="#" class=" pro_btn det_btn">立即投资</a></p>
             </div>
         </div>
         <!-- end block1 -->
