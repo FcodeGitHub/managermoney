@@ -13,6 +13,11 @@
         EvPNG.fix('div, ul, img, li, input,span, p');
     </script>
     <![endif]-->
+    <style>
+        .det_intro_tul li span strong {
+            font-size: 50px;
+        }
+    </style>
     <script>
         //需要获取到浏览器后面的id值，然后发送ajax请求给controller
         function GetQueryString(name) {
@@ -28,9 +33,69 @@
             var a = "";
             $.get("selectProjectDetailById", {"id": id}, function (data) {
                 //alert(1111);
+            $.get("project/selectProjectDetailById", {"id": id}, function (data) {
+                a = " <div class=\"detail_introl_tit clearfix\">" +
+                    "                    <div class=\"det_introl_tit_l fl\">\n" +
+                    "                        <span>抵押</span> "+data.projectName+"" +
+                    "                    </div>\n" +
+                    "                    <!-- end l -->\n" +
+                    "                    <div class=\"det_introl_tit_r fr\">\n" +
+                    "                        保障级别：A级 <img src=\"images/det_wenhao.png\" alt=\"\">\n" +
+                    "                    </div>\n" +
+                    "                </div>\n" +
+                    "                <!-- end tit -->\n" +
+                    "                <div class=\"det_intro_text mr20\">\n" +
+                    "                    <ul class=\"det_intro_tul clearfix\">\n" +
+                    "                        <li>\n" +
+                    "                            年华收益<br>\n" +
+                    "                            <span style=\"color:#ff7112;\">\n" +
+                    "\t  \t     \t    \t  \t    <strong>"+data.yearsHaving+"</strong> 年华\n" +
+                    "                                </span>\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            项目期限<br>\n" +
+                    "                            <span>\n" +
+                    "                                <strong>"+data.months+"</strong>个月\n" +
+                    "                            </span>\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            项目规模<br>\n" +
+                    "                            <span>\n" +
+                    "                                <strong>"+data.needMoney+"</strong>万\n" +
+                    "                            </span>\n" +
+                    "                        </li>\n" +
+                    "                    </ul>\n" +
+                    "                    <!-- end  -->\n" +
+                    "                    <ul class=\"det_intro_tul2 clearfix\">\n" +
+                    "                        <li>\n" +
+                    "                            发布日期："+data.createTime+"\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            "+data.repaymentType+"\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            还款日期："+data.repaymentTime+"\n" +
+                    "                        </li>\n" +
+                    "                        <li>\n" +
+                    "                            "+data.guarantee+"\n" +
+                    "                        </li>\n" +
+                    "                    </ul>\n" +
+                    "                </div>";
                 $("#showProject").append(a);
             });
         });
+
+        // 风控信息展示
+        function showControl() {
+            $("#projectShow").hide();
+            $("#manager").hide();
+            $("#record").hide();
+            $("#projectSpan").toggleClass("det_tit_curspan");
+            $("#control").show();
+            $("#managerSpan").toggleClass("det_tit_curspan");
+        }
+
+        //
     </script>
 </head>
 <body>
@@ -84,53 +149,7 @@
     <div class="zxcf_detail px1000">
         <div class="detail_intro clearfix">
             <div class="detail_intro_l fl" id="showProject">
-                <div class="detail_introl_tit clearfix">
-                    <div class="det_introl_tit_l fl">
-                        <span>抵押</span> 购车借款23万第2标13万
-                    </div>
-                    <!-- end l -->
-                    <div class="det_introl_tit_r fr">
-                        保障级别：A级 <img src="images/det_wenhao.png" alt="">
-                    </div>
-                </div>
-                <!-- end tit -->
-                <div class="det_intro_text mr20">
-                    <ul class="det_intro_tul clearfix">
-                        <li>
-                            年华收益<br>
-                            <span style="color:#ff7112;">
-	  	     	    	  	    <strong>12</strong>% 年华
-                                </span>
-                        </li>
-                        <li>
-                            项目期限<br>
-                            <span>
-                                <strong>12</strong>个月
-                            </span>
-                        </li>
-                        <li>
-                            项目规模<br>
-                            <span>
-                                <strong>1000</strong>万
-                            </span>
-                        </li>
-                    </ul>
-                    <!-- end  -->
-                    <ul class="det_intro_tul2 clearfix">
-                        <li>
-                            发布日期：2015-07-08
-                        </li>
-                        <li>
-                            还款方式：按月付息，到期还本
-                        </li>
-                        <li>
-                            还款日期：2016-07-11
-                        </li>
-                        <li>
-                            保障机构：北京国能小额贷款股份公司
-                        </li>
-                    </ul>
-                </div>
+
                 <!-- end text -->
             </div>
             <div class="detail_intro_r fr">
@@ -152,17 +171,16 @@
         </div>
         <!-- end block1 -->
         <div class="detail_con mt30">
-            <h2 class="detail_con_tit clearfix">
-                <span class="det_tit_curspan">项目描述</span>
-                <span>风控信息</span>
+            <h2 class="detail_con_tit clearfix" id="h2">
+                <span class="det_tit_curspan" id="projectSpan">项目描述</span>
+                <span onclick="showControl()" id="managerSpan">风控信息</span>
                 <span>贷后管理</span>
                 <span>投标记录<i>10</i></span>
             </h2>
             <div class="det_con_box">
                 <div class="det_con_proone clearfix">
                     <div class="det_l_box fl">
-
-                        <div class="det_proone_l">
+                        <div class="det_proone_l" id="projectShow">
                             <h2 class="det_proone_tit">借款企业</h2>
                             <div class="det_clsj ">
                                 <p>成立时间：<strong>2012-05-02</strong></p>
@@ -216,7 +234,8 @@
                             </div>
                         </div>
                         <!-- end 项目描述 -->
-                        <div class="det_proone_l" style="display:none;">
+                        <!-- 风控信息 -->
+                        <div class="det_proone_l" style="display:none;" id="control">
                             <h2 class="det_proone_tit">项目评估</h2>
                             <!--  -->
                             <div class="company-msg-option ppd-company-option2 show">
@@ -307,7 +326,7 @@
                             <!-- end 抵押物信息 -->
                         </div>
                         <!-- end fk -->
-                        <div class="det_proone_l" style="display:none;">
+                        <div class="det_proone_l" style="display:none;" id="manager">
                             <h2 class="det_proone_tit">放款通知</h2>
                             <p class="dhgl_p1"><img src="images/1.jpg" alt="">融资成功,企业正在还款</p>
                             <h2 class="det_proone_tit">还款概况</h2>
@@ -384,7 +403,7 @@
 
                         </div>
                         <!-- end dhgl -->
-                        <div class="det_proone_l" style="display:none;">
+                        <div class="det_proone_l" style="display:none;" id="record">
                             <P class="det_tbjl_tit">
 	  	     	   	            	     <span class="mr30"><img src="images/det_tbjl_pic01.png" alt=""> 
 	  	     	   	            	     目前总金额：￥21,122.00</span>
