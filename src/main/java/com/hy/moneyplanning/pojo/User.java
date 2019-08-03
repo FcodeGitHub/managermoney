@@ -5,6 +5,7 @@ public class User {
     private String userName;
     private String passWord;
     private String phoneNum;
+
     public User() {}
 
     public User(int id, String userName, String passWord, String phoneNum) {

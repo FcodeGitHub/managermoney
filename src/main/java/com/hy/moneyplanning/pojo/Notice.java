@@ -7,7 +7,16 @@ public class Notice {
 
     private String createTime;
 
+    private String infoDate;
+
     public Notice() {
+    }
+
+    public Notice(Integer id, String title, String createTime, String infoDate) {
+        this.id = id;
+        this.title = title;
+        this.createTime = createTime;
+        this.infoDate = infoDate;
     }
 
     public Integer getId() {
@@ -34,12 +43,21 @@ public class Notice {
         this.createTime = createTime;
     }
 
+    public String getInfoDate() {
+        return infoDate;
+    }
+
+    public void setInfoDate(String infoDate) {
+        this.infoDate = infoDate;
+    }
+
     @Override
     public String toString() {
         return "Notice{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", createTime='" + createTime + '\'' +
+                ", infoDate='" + infoDate + '\'' +
                 '}';
     }
 }
