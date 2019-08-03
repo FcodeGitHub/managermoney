@@ -31,12 +31,10 @@
             var id = GetQueryString("id");
             // 拼接字符串使用
             var a = "";
-            $.get("selectProjectDetailById", {"id": id}, function (data) {
-                //alert(1111);
             $.get("project/selectProjectDetailById", {"id": id}, function (data) {
                 a = " <div class=\"detail_introl_tit clearfix\">" +
                     "                    <div class=\"det_introl_tit_l fl\">\n" +
-                    "                        <span>抵押</span> "+data.projectName+"" +
+                    "                        <span>抵押</span> " + data.projectName + "" +
                     "                    </div>\n" +
                     "                    <!-- end l -->\n" +
                     "                    <div class=\"det_introl_tit_r fr\">\n" +
@@ -49,53 +47,360 @@
                     "                        <li>\n" +
                     "                            年华收益<br>\n" +
                     "                            <span style=\"color:#ff7112;\">\n" +
-                    "\t  \t     \t    \t  \t    <strong>"+data.yearsHaving+"</strong> 年华\n" +
+                    "\t  \t     \t    \t  \t    <strong>" + data.yearsHaving + "</strong> 年华\n" +
                     "                                </span>\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
                     "                            项目期限<br>\n" +
                     "                            <span>\n" +
-                    "                                <strong>"+data.months+"</strong>个月\n" +
+                    "                                <strong>" + data.months + "</strong>个月\n" +
                     "                            </span>\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
                     "                            项目规模<br>\n" +
                     "                            <span>\n" +
-                    "                                <strong>"+data.needMoney+"</strong>万\n" +
+                    "                                <strong>" + data.needMoney + "</strong>万\n" +
                     "                            </span>\n" +
                     "                        </li>\n" +
                     "                    </ul>\n" +
                     "                    <!-- end  -->\n" +
                     "                    <ul class=\"det_intro_tul2 clearfix\">\n" +
                     "                        <li>\n" +
-                    "                            发布日期："+data.createTime+"\n" +
+                    "                            发布日期：" + data.createTime + "\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
-                    "                            "+data.repaymentType+"\n" +
+                    "                            " + data.repaymentType + "\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
-                    "                            还款日期："+data.repaymentTime+"\n" +
+                    "                            还款日期：" + data.repaymentTime + "\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
-                    "                            "+data.guarantee+"\n" +
+                    "                            " + data.guarantee + "\n" +
                     "                        </li>\n" +
                     "                    </ul>\n" +
                     "                </div>";
                 $("#showProject").append(a);
+                projectClick();
+
             });
         });
 
-        // 风控信息展示
-        function showControl() {
-            $("#projectShow").hide();
-            $("#manager").hide();
-            $("#record").hide();
-            $("#projectSpan").toggleClass("det_tit_curspan");
-            $("#control").show();
-            $("#managerSpan").toggleClass("det_tit_curspan");
+        // 项目描述事件
+        function projectClick() {
+            var id = GetQueryString("id");
+            $.get("project/selectProjectById", {"id": id}, function (data) {
+                $("#projectSpan").addClass("det_tit_curspan");
+                $("#controlSpan").removeClass("det_tit_curspan");
+                showProjectDetail(data);
+            });
         }
 
-        //
+        // 展示项目描述
+        function showProjectDetail(data) {
+            var project = "<div class=\"det_proone_l\" id=\"projectShow\">" +
+                "<h2 class=\"det_proone_tit\">借款企业</h2>\n" +
+                "                            <div class=\"det_clsj \">\n" +
+                "                                <p>成立时间：<strong>" + data.createTime + "</strong></p>\n" +
+                "                                <p><span\n" +
+                "                                        style=\"margin-right:150px;\">公司地址：<strong>" + data.address + "</strong></span>所属行业：<strong>" + data.type + "</strong>\n" +
+                "                                </p>\n" +
+                "                            </div>\n" +
+                "                            <div class=\"det_clsj \">\n" +
+                "                                <img src=\"images/det_pic01.png\" alt=\"\">\n" +
+                "                            </div>\n" +
+                "                            <div class=\"det_clsj \">\n" +
+                "                                <img src=\"images/det_pic02.png\" alt=\"\">\n" +
+                "                            </div>\n" +
+                "                            <h2 class=\"det_proone_tit mt30\">基本信息</h2>\n" +
+                "                            <div class=\"det_clsj \">\n" +
+                "                                <ul class=\"det_clsj_ul\">\n" +
+                "                                    <li>融资企业：" + data.name + "</li>\n" +
+                "                                    <li>\n" +
+                "                                        注册资金：人名币" + data.fund + "元整\n" +
+                "                                    </li>\n" +
+                "\n" +
+                "                                </ul>\n" +
+                "                            </div>\n" +
+                "                            <h2 class=\"det_proone_tit mt30\">企业经营状况</h2>\n" +
+                "                            <div class=\"det_clsj\">\n" +
+                "                                " + data.manageState + "\n" +
+                "                            </div>\n" +
+                "                            <h2 class=\"det_proone_tit mt30\">财务状况</h2>\n" +
+                "                            <div class=\"det_clsj\">\n" +
+                "                                " + data.moneyState + "\n" +
+                "                            </div>" +
+                "</div>";
+            $("#divAll").empty();
+            $("#divAll").append(project);
+        }
+
+        // 风控信息展示
+        function showControlInfo() {
+            var id = GetQueryString("id");
+            $.get("project/selectControlInfo", {"id": id}, function (data) {
+                $("#controlSpan").addClass("det_tit_curspan");
+                $("#projectSpan").removeClass("det_tit_curspan");
+                var controlInfo = "<div class=\"det_proone_l\">\n" +
+                    "                            <h2 class=\"det_proone_tit\">项目评估</h2>\n" +
+                    "                            <!--  -->\n" +
+                    "                            <div class=\"company-msg-option ppd-company-option2 show\">\n" +
+                    "                                <div class=\"project-assess clearfix\">\n" +
+                    "                                    <ul class=\"project-assess-pt1\">\n" +
+                    "                                        <li>\n" +
+                    "                                            <div class=\"small-tit\">基本信息</div>\n" +
+                    "                                            <div class=\"progress-bar\">\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.basicInfo + "%\"></div>\n" +
+                    "                                            </div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.basicInfo + "分</div>\n" +
+                    "                                        </li>\n" +
+                    "                                        <li>\n" +
+                    "                                            <div class=\"small-tit\">财务实力</div>\n" +
+                    "                                            <div class=\"progress-bar\">\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.money + "%\"></div>\n" +
+                    "                                            </div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.money + "分</div>\n" +
+                    "                                        </li>\n" +
+                    "                                        <li>\n" +
+                    "                                            <div class=\"small-tit\">经营情况</div>\n" +
+                    "                                            <div class=\"progress-bar\">\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.manageState + "%\"></div>\n" +
+                    "                                            </div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.manageState + "分</div>\n" +
+                    "                                        </li>\n" +
+                    "                                        <li>\n" +
+                    "                                            <div class=\"small-tit\">偿还能力</div>\n" +
+                    "                                            <div class=\"progress-bar\">\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.repay + "%\"></div>\n" +
+                    "                                            </div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.repay + "分</div>\n" +
+                    "                                        </li>\n" +
+                    "                                        <li>\n" +
+                    "                                            <div class=\"small-tit\">实际控制人</div>\n" +
+                    "                                            <div class=\"progress-bar\">\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.manager + "%\"></div>\n" +
+                    "                                            </div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.manager + "分</div>\n" +
+                    "                                        </li>\n" +
+                    "                                    </ul>\n" +
+                    "                                    <div class=\"project-assess-pt2\" style=\" color: #ff5a00;\">\n" +
+                    "                                        <p class=\"p1\">" + data.grade + "<span class=\"small-txt\" style=\"font-size:12px;\">分</span></p>\n" +
+                    "                                        <p class=\"p2\">综合信用评分</p>\n" +
+                    "                                    </div>\n" +
+                    "                                    <div class=\"project-assess-pt3\">\n" +
+                    "                                        <p class=\"p1\">" + data.creditLevel + "</p>\n" +
+                    "                                        <p class=\"p2\">综合信用等级</p>\n" +
+                    "                                    </div>\n" +
+                    "                                </div>\n" +
+                    "                            </div>\n" +
+                    "                            <!--  -->\n" +
+                    "                            <h2 class=\"det_proone_tit\">项目保障</h2>\n" +
+                    "                            <!--  -->\n" +
+                    "\n" +
+                    "                            <div class=\"prject-guarantee\">\n" +
+                    "                                <dl class=\"dl1 clearfix\">\n" +
+                    "                                    <dt>担保方</dt>\n" +
+                    "                                    <dd><em class=\"company-logo-sprite\"\n" +
+                    "                                            style=\"background:url(https://dn-licaifan-upload.qbox.me/uploads/admin/e9fb6a4feac008a08ab67dc3dc2244a2.png)\"></em><span><a\n" +
+                    "                                            href=\"/vouch/detail/8\" target=\"_blank\">" + data.guarantee + "</a></span></dd>\n" +
+                    "                                </dl>\n" +
+                    "                                <dl class=\"dl2 clearfix\">\n" +
+                    "                                    <dt style=\"height:200px;line-height:20px;\">保障措施</dt>\n" +
+                    "                                    <dd>\n" +
+                    "                                        <p>1、" + data.safety.one + "；</p>\n" +
+                    "                                        <p>2、" + data.safety.two + "；</p>\n" +
+                    "                                        <p>3、" + data.safety.three + "；</p>\n" +
+                    "                                        <p>4、" + data.safety.four + "；</p>\n" +
+                    "                                        <p>5、" + data.safety.five + "。</p>\n" +
+                    "                                        <p><br></p></dd>\n" +
+                    "                                </dl>\n" +
+                    "                            </div>\n" +
+                    "                            <!--  -->\n" +
+                    "                            <h2 class=\"det_proone_tit\">抵押物信息</h2>\n" +
+                    "                            <div class=\"det_dywxx_ul\">" + data.guaranteeInfo + "</div>\n" +
+                    "                            <!-- end 抵押物信息 -->\n" +
+                    "                            <h2 class=\"det_proone_tit\">风险控制措施</h2>\n" +
+                    "                            <ul class=\"det_dywxx_ul\">\n" +
+                    "                                <li>1、" + data.riskControl.one + "；</li>\n" +
+                    "                                <li>2、" + data.riskControl.two + "；</li>\n" +
+                    "                                <li>3、" + data.riskControl.three + "；</li>\n" +
+                    "                                <li>4、" + data.riskControl.four + "。</li>\n" +
+                    "                            </ul>\n" +
+                    "                            <!-- end 风险控制 -->\n" +
+                    "                            <h2 class=\"det_proone_tit\">担保机构意见</h2>\n" +
+                    "                            <div class=\"det_dywxx_ul\">" + data.guaranteeIdea + "</div>\n" +
+                    "                            <!-- end 抵押物信息 -->\n" +
+                    "                        </div>";
+                $("#divAll").empty();
+                $("#divAll").append(controlInfo);
+            });
+        }
+
+        // 贷后管理展示
+        function showManage() {
+            var id = GetQueryString("id");
+            var manage = "<div class=\"det_proone_l\">\n" +
+                "                            <h2 class=\"det_proone_tit\">放款通知</h2>\n" +
+                "                            <p class=\"dhgl_p1\"><img src=\"images/1.jpg\" alt=\"\">融资成功,企业正在还款</p>\n" +
+                "                            <h2 class=\"det_proone_tit\">还款概况</h2>\n" +
+                "                            <ul class=\"dhgl_ul\">\n" +
+                "                                <li>\n" +
+                "                                    <img src=\"images/2.jpg\" alt=\"\">\n" +
+                "                                    <span>应付利息</span>\n" +
+                "                                    <span>123213.4元（12期）</span>\n" +
+                "                                </li>\n" +
+                "                                <li>\n" +
+                "                                    &nbsp;<img src=\"images/3.jpg\" alt=\"\">\n" +
+                "                                    <span>应付利息</span>\n" +
+                "                                    <span>123213.4元（12期）</span>\n" +
+                "                                </li>\n" +
+                "                                <li>\n" +
+                "                                    &nbsp;<img src=\"images/4.jpg\" alt=\"\">\n" +
+                "                                    <span>应付利息</span>\n" +
+                "                                    <span>123213.4元（12期）</span>\n" +
+                "                                </li>\n" +
+                "                                <li>\n" +
+                "                                    <img src=\"images/5.jpg\" alt=\"\">\n" +
+                "                                    <span>应付利息</span>\n" +
+                "                                    <span>123213.4元（12期）</span>\n" +
+                "                                </li>\n" +
+                "\n" +
+                "                            </ul>\n" +
+                "                            <h2 class=\"det_proone_tit\">还款明细</h2>\n" +
+                "                            <div class=\"pl20 pr20 pt20\">\n" +
+                "                                <table class=\"dhgl_table\">\n" +
+                "                                    <tr style=\"border-bottom:none;\">\n" +
+                "                                        <th>还款日期</th>\n" +
+                "                                        <th>还款类型</th>\n" +
+                "                                        <th>还款金额</th>\n" +
+                "                                        <th>还款状态</th>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td>2015-11</td>\n" +
+                "                                        <td>利息</td>\n" +
+                "                                        <td>82333.23元</td>\n" +
+                "                                        <td>未到期</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td>2015-11</td>\n" +
+                "                                        <td>利息</td>\n" +
+                "                                        <td>82333.23元</td>\n" +
+                "                                        <td>未到期</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td>2015-11</td>\n" +
+                "                                        <td>利息</td>\n" +
+                "                                        <td>82333.23元</td>\n" +
+                "                                        <td>未到期</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td>2015-11</td>\n" +
+                "                                        <td>利息</td>\n" +
+                "                                        <td>82333.23元</td>\n" +
+                "                                        <td>未到期</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td>2015-11</td>\n" +
+                "                                        <td>利息</td>\n" +
+                "                                        <td>82333.23元</td>\n" +
+                "                                        <td>未到期</td>\n" +
+                "                                    </tr>\n" +
+                "                                    <tr>\n" +
+                "                                        <td>2015-11</td>\n" +
+                "                                        <td>利息</td>\n" +
+                "                                        <td>82333.23元</td>\n" +
+                "                                        <td>未到期</td>\n" +
+                "                                    </tr>\n" +
+                "                                </table>\n" +
+                "                            </div>\n" +
+                "\n" +
+                "                        </div>";
+            $("#divAll").empty();
+            $("#divAll").append(manage);
+        }
+
+        // 投标记录展示
+        function showRecord() {
+            var id = GetQueryString("id");
+            var record = "<div class=\"det_proone_l\">\n" +
+                "                            <P class=\"det_tbjl_tit\">\n" +
+                "\t  \t     \t   \t            \t     <span class=\"mr30\"><img src=\"images/det_tbjl_pic01.png\" alt=\"\"> \n" +
+                "\t  \t     \t   \t            \t     目前总金额：￥21,122.00</span>\n" +
+                "                                <span><img src=\"images/det_tbjl_pic02.png\" alt=\"\">\n" +
+                "\t  \t     \t   \t            \t     剩余金额：￥123,123.00</span>\n" +
+                "                            </P>\n" +
+                "                            <table class=\"det_table\">\n" +
+                "                                <tr class=\"det_table_head\" style=\"height:40px;\">\n" +
+                "                                    <td>投资用户</td>\n" +
+                "                                    <td>投资金额</td>\n" +
+                "                                    <td class=\"det_w1160\">投资时间</td>\n" +
+                "                                    <td>状态</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "                                <tr>\n" +
+                "                                    <td>0****</td>\n" +
+                "                                    <td>10000.00元</td>\n" +
+                "                                    <td>2015-07-08 18:08:05</td>\n" +
+                "                                    <td>手动投标</td>\n" +
+                "                                </tr>\n" +
+                "\n" +
+                "                            </table>\n" +
+                "                        </div>";
+            $("#divAll").empty();
+            $("#divAll").append(record);
+        }
     </script>
 </head>
 <body>
@@ -155,7 +460,7 @@
             <div class="detail_intro_r fr">
                 <h2 class="det_intro_h2 clearfix"><span class="fl">投资进度:</span><em class="fr">46.05%</em></h2>
                 <div class="jklb_press_wper">
-                    <div class="jklb_press">
+                    <div class="jklb_press" style="width:46.05%">
 
                     </div>
                 </div>
@@ -172,314 +477,20 @@
         <!-- end block1 -->
         <div class="detail_con mt30">
             <h2 class="detail_con_tit clearfix" id="h2">
-                <span class="det_tit_curspan" id="projectSpan">项目描述</span>
-                <span onclick="showControl()" id="managerSpan">风控信息</span>
-                <span>贷后管理</span>
-                <span>投标记录<i>10</i></span>
+                <span onclick="projectClick()" id="projectSpan">项目描述</span>
+                <span onclick="showControlInfo()" id="controlSpan">风控信息</span>
+                <span onclick="showManage()" id="manageSpan">贷后管理</span>
+                <span onclick="showRecord()" id="recordSpan">投标记录<i>10</i></span>
             </h2>
             <div class="det_con_box">
                 <div class="det_con_proone clearfix">
-                    <div class="det_l_box fl">
-                        <div class="det_proone_l" id="projectShow">
-                            <h2 class="det_proone_tit">借款企业</h2>
-                            <div class="det_clsj ">
-                                <p>成立时间：<strong>2012-05-02</strong></p>
-                                <p><span
-                                        style="margin-right:150px;">公司地址：<strong>云南省</strong></span>所属行业：<strong>珠宝行业</strong>
-                                </p>
-                            </div>
-                            <div class="det_clsj ">
-                                <img src="images/det_pic01.png" alt="">
-                            </div>
-                            <div class="det_clsj ">
-                                <img src="images/det_pic02.png" alt="">
-                            </div>
-                            <h2 class="det_proone_tit mt30">基本信息</h2>
-                            <div class="det_clsj ">
-                                <ul class="det_clsj_ul">
-                                    <li>融资企业：厦门食品有限公司</li>
-                                    <li>
-                                        注册资金：人名币50万元整
-                                    </li>
-                                    <li>融资企业：厦门食品有限公司</li>
-                                    <li>
-                                        注册资金：人名币50万元整
-                                    </li>
-                                    <li>融资企业：厦门食品有限公司</li>
-                                    <li>
-                                        注册资金：人名币50万元整
-                                    </li>
-                                    <li>融资企业：厦门食品有限公司</li>
-                                    <li>
-                                        注册资金：人名币50万元整
-                                    </li>
-                                    <li>融资企业：厦门食品有限公司</li>
-                                    <li>
-                                        注册资金：人名币50万元整
-                                    </li>
-                                    <li>融资企业：厦门食品有限公司</li>
-                                    <li>
-                                        注册资金：人名币50万元整
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <h2 class="det_proone_tit mt30">企业经营状况</h2>
-                            <div class="det_clsj">
-                                厦门食品有限公司于1999年6月厦门工商局登记注册，公司的办公地址位于厦门市同安区轻工业园区
-                            </div>
-                            <h2 class="det_proone_tit mt30">财务状况</h2>
-                            <div class="det_clsj">
-                                厦门食品有限公司于1999年6月厦门工商局登记注册，公司的办公地址位于厦门市同安区轻工业园区
-                            </div>
-                        </div>
-                        <!-- end 项目描述 -->
+                    <div class="det_l_box fl" id="divAll">
                         <!-- 风控信息 -->
-                        <div class="det_proone_l" style="display:none;" id="control">
-                            <h2 class="det_proone_tit">项目评估</h2>
-                            <!--  -->
-                            <div class="company-msg-option ppd-company-option2 show">
-                                <div class="project-assess clearfix">
-                                    <ul class="project-assess-pt1">
-                                        <li>
-                                            <div class="small-tit">基本信息</div>
-                                            <div class="progress-bar">
-                                                <div class="progress-bar-in" style="width:93%"></div>
-                                            </div>
-                                            <div class="progress-bar-txt">93分</div>
-                                        </li>
-                                        <li>
-                                            <div class="small-tit">财务实力</div>
-                                            <div class="progress-bar">
-                                                <div class="progress-bar-in" style="width:89%"></div>
-                                            </div>
-                                            <div class="progress-bar-txt">89分</div>
-                                        </li>
-                                        <li>
-                                            <div class="small-tit">经营情况</div>
-                                            <div class="progress-bar">
-                                                <div class="progress-bar-in" style="width:93%"></div>
-                                            </div>
-                                            <div class="progress-bar-txt">93分</div>
-                                        </li>
-                                        <li>
-                                            <div class="small-tit">偿还能力</div>
-                                            <div class="progress-bar">
-                                                <div class="progress-bar-in" style="width:95%"></div>
-                                            </div>
-                                            <div class="progress-bar-txt">95分</div>
-                                        </li>
-                                        <li>
-                                            <div class="small-tit">实际控制人</div>
-                                            <div class="progress-bar">
-                                                <div class="progress-bar-in" style="width:89%"></div>
-                                            </div>
-                                            <div class="progress-bar-txt">89分</div>
-                                        </li>
-                                    </ul>
-                                    <div class="project-assess-pt2" style=" color: #ff5a00;">
-                                        <p class="p1">92<span class="small-txt" style="font-size:12px;">分</span></p>
-                                        <p class="p2">综合信用评分</p>
-                                    </div>
-                                    <div class="project-assess-pt3">
-                                        <p class="p1">AAA</p>
-                                        <p class="p2">综合信用等级</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--  -->
-                            <h2 class="det_proone_tit">项目保障</h2>
-                            <!--  -->
 
-                            <div class="prject-guarantee">
-                                <dl class="dl1 clearfix">
-                                    <dt>担保方</dt>
-                                    <dd><em class="company-logo-sprite"
-                                            style="background:url(https://dn-licaifan-upload.qbox.me/uploads/admin/e9fb6a4feac008a08ab67dc3dc2244a2.png)"></em><span><a
-                                            href="/vouch/detail/8" target="_blank">金达融资担保有限责任公司</a></span></dd>
-                                </dl>
-                                <dl class="dl2 clearfix">
-                                    <dt style="height:200px;line-height:20px;">保障措施</dt>
-                                    <dd>
-                                        <p>1、担保机构提供不可撤销的连带责任担保，对本息100%保障；</p>
-                                        <p>2、担保机构按规定计提30%的担保费作为风险保障金，由理财范与担保公司共同监管；</p>
-                                        <p>3、借款企业提供足值抵押物；</p>
-                                        <p>4、借款企业实际控制人向债权人提供连带保证；</p>
-                                        <p>5、北京***企业提供连带保证。</p>
-                                        <p><br></p></dd>
-                                </dl>
-                            </div>
-                            <!--  -->
-                            <h2 class="det_proone_tit">抵押物信息</h2>
-                            <div class="det_dywxx_ul">借款企业提供一处面积为6308.97平方米、评估价值2086.38万元的房产作抵押。</div>
-                            <!-- end 抵押物信息 -->
-                            <h2 class="det_proone_tit">风险控制措施</h2>
-                            <ul class="det_dywxx_ul">
-                                <li>1、借款企业提供足值的抵押物；</li>
-                                <li>2、借款企业法人提供个人连带保证；</li>
-                                <li>3、北京***企业提供连带保证；</li>
-                                <li>4、担保公司及理财范平台将执行严格的贷后管理制度。</li>
-                            </ul>
-                            <!-- end 风险控制 -->
-                            <h2 class="det_proone_tit">担保机构意见</h2>
-                            <div class="det_dywxx_ul">借款企业提供一处面积为6308.97平方米、评估价值2086.38万元的房产作抵押。</div>
-                            <!-- end 抵押物信息 -->
-                        </div>
                         <!-- end fk -->
-                        <div class="det_proone_l" style="display:none;" id="manager">
-                            <h2 class="det_proone_tit">放款通知</h2>
-                            <p class="dhgl_p1"><img src="images/1.jpg" alt="">融资成功,企业正在还款</p>
-                            <h2 class="det_proone_tit">还款概况</h2>
-                            <ul class="dhgl_ul">
-                                <li>
-                                    <img src="images/2.jpg" alt="">
-                                    <span>应付利息</span>
-                                    <span>123213.4元（12期）</span>
-                                </li>
-                                <li>
-                                    &nbsp;<img src="images/3.jpg" alt="">
-                                    <span>应付利息</span>
-                                    <span>123213.4元（12期）</span>
-                                </li>
-                                <li>
-                                    &nbsp;<img src="images/4.jpg" alt="">
-                                    <span>应付利息</span>
-                                    <span>123213.4元（12期）</span>
-                                </li>
-                                <li>
-                                    <img src="images/5.jpg" alt="">
-                                    <span>应付利息</span>
-                                    <span>123213.4元（12期）</span>
-                                </li>
 
-                            </ul>
-                            <h2 class="det_proone_tit">还款明细</h2>
-                            <div class="pl20 pr20 pt20">
-                                <table class="dhgl_table">
-                                    <tr style="border-bottom:none;">
-                                        <th>还款日期</th>
-                                        <th>还款类型</th>
-                                        <th>还款金额</th>
-                                        <th>还款状态</th>
-                                    </tr>
-                                    <tr>
-                                        <td>2015-11</td>
-                                        <td>利息</td>
-                                        <td>82333.23元</td>
-                                        <td>未到期</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2015-11</td>
-                                        <td>利息</td>
-                                        <td>82333.23元</td>
-                                        <td>未到期</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2015-11</td>
-                                        <td>利息</td>
-                                        <td>82333.23元</td>
-                                        <td>未到期</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2015-11</td>
-                                        <td>利息</td>
-                                        <td>82333.23元</td>
-                                        <td>未到期</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2015-11</td>
-                                        <td>利息</td>
-                                        <td>82333.23元</td>
-                                        <td>未到期</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2015-11</td>
-                                        <td>利息</td>
-                                        <td>82333.23元</td>
-                                        <td>未到期</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                        </div>
                         <!-- end dhgl -->
-                        <div class="det_proone_l" style="display:none;" id="record">
-                            <P class="det_tbjl_tit">
-	  	     	   	            	     <span class="mr30"><img src="images/det_tbjl_pic01.png" alt=""> 
-	  	     	   	            	     目前总金额：￥21,122.00</span>
-                                <span><img src="images/det_tbjl_pic02.png" alt="">
-	  	     	   	            	     剩余金额：￥123,123.00</span>
-                            </P>
-                            <table class="det_table">
-                                <tr class="det_table_head" style="height:40px;">
-                                    <td>投资用户</td>
-                                    <td>投资金额</td>
-                                    <td class="det_w1160">投资时间</td>
-                                    <td>状态</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
-                                <tr>
-                                    <td>0****</td>
-                                    <td>10000.00元</td>
-                                    <td>2015-07-08 18:08:05</td>
-                                    <td>手动投标</td>
-                                </tr>
 
-                            </table>
-                        </div>
                         <!-- end tbjl -->
                     </div>
                     <!-- end l -->

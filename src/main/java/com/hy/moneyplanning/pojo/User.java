@@ -6,13 +6,7 @@ public class User {
     private String passWord;
     private String phoneNum;
 
-    public User() {}
-
-    public User(int id, String userName, String passWord, String phoneNum) {
-        this.id = id;
-        this.userName = userName;
-        this.passWord = passWord;
-        this.phoneNum = phoneNum;
+    public User() {
     }
 
     public int getId() {
