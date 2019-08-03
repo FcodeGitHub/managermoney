@@ -28,11 +28,15 @@ public class UserController {
     /**
      * 验证用户名/手机号是否存在
      */
-    @RequestMapping("/validateName")
-    public List<User> validateName() {
+    @RequestMapping("/selectByName")
+    public String selectByName(String phoneNum) {
         // 调用方法查询
-
-      return null;
+        boolean result = userService.selectByName(phoneNum);
+        if (result){
+            return "success";
+        }else{
+            return "fail";
+        }
     }
 
     /**

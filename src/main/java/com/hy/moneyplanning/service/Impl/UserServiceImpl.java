@@ -23,8 +23,6 @@ public class UserServiceImpl implements UserService {
         }
 
     }
-    //验证账户是否存在
-
 
     //注册
     @Override
@@ -33,8 +31,12 @@ public class UserServiceImpl implements UserService {
     return result>0?true :false;
     }
 
+    //验证账户是否存在
+    @Override
+    public boolean selectByName(String phoneNum) {
 
-
+        return false;
+    }
 
 
 }
