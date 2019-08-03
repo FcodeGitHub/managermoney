@@ -16,4 +16,8 @@ public interface ProjectMapper {
     List<Notice> showInfo();
 
     List<Top> showTop();
+    /**
+     * 通过id查询
+     */
+    Project selectProjectDetailById(int id);
 }

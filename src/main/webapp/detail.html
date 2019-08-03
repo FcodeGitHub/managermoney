@@ -21,10 +21,14 @@
             if (r != null) return unescape(r[2]);
             return null;
         }
+
         $(function () {
             var id = GetQueryString("id");
-            $.get("selectProjectDetail",{"id":id},function () {
-
+            // 拼接字符串使用
+            var a = "";
+            $.get("selectProjectDetailById", {"id": id}, function (data) {
+                alert(1111);
+                $("#showProject").append(a);
             });
         });
     </script>
@@ -67,8 +71,8 @@
 </div>
 <div class="zxcf_menu_wper">
     <div class="zxcf_menu px1000">
-        <a href="index.html" class="zm_cura">首页</a>
-        <a href="invest.html">我要投资</a>
+        <a href="index.html">首页</a>
+        <a href="invest.html" class="zm_cura">我要投资</a>
         <a href="borrow.html">我要借款</a>
         <a href="#">实时财务</a>
         <a href="noticelist.html">新手指引</a>
@@ -79,7 +83,7 @@
 <div class="zxcf_detail_wper">
     <div class="zxcf_detail px1000">
         <div class="detail_intro clearfix">
-            <div class="detail_intro_l fl">
+            <div class="detail_intro_l fl" id="showProject">
                 <div class="detail_introl_tit clearfix">
                     <div class="det_introl_tit_l fl">
                         <span>抵押</span> 购车借款23万第2标13万
@@ -95,22 +99,21 @@
                         <li>
                             年华收益<br>
                             <span style="color:#ff7112;">
-	  	     	    	  	    		 	 <strong>12</strong>% 年华
-	  	     	    	  	    		 </span>
+	  	     	    	  	    <strong>12</strong>% 年华
+                                </span>
                         </li>
                         <li>
                             项目期限<br>
                             <span>
-	  	     	    	  	    		 	 <strong>12</strong>个月
-	  	     	    	  	    		 </span>
+                                <strong>12</strong>个月
+                            </span>
                         </li>
                         <li>
                             项目规模<br>
                             <span>
-	  	     	    	  	    		 	 <strong>1000</strong>万
-	  	     	    	  	    		 </span>
+                                <strong>1000</strong>万
+                            </span>
                         </li>
-
                     </ul>
                     <!-- end  -->
                     <ul class="det_intro_tul2 clearfix">

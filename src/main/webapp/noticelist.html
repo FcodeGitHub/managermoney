@@ -19,21 +19,45 @@
                 url: "showNoticeList",
                 type: "POST",
                 success: function (data) {
-                    alert(data.list);
+                    showData(data);
                 }
             });
         });
 
         // 展示数据
         function showData(data) {
+            var noticeList = data.list;
+            var pages = data.pages;
             // 用于定义拼接字符串
             var str = "";
             var a = "";
+            // p标签
+            var p = $("#p");
             // 进行拼接
-            for (var i = 0; i < data.length; i++) {
-                str = "<li class=\"clearfix\"><a href=\"article.html\">" + data[i].title + "</a><span>" + data[i].createTime + "</span></li>";
+            for (var i = 0; i < noticeList.length; i++) {
+                str = "<li class=\"clearfix\"><a href=\"article.html\">" + noticeList[i].title + "</a><span>" + noticeList[i].createTime + "</span></li>";
                 $("#noticeUl").append(str);
             }
+            for (var j = 1; j <= pages; j++) {
+                if ( j == data.pageNum) {
+                    a = "<a id='a"+j+"' href=\"#\" class=\"notic_acur\" onclick='showNotice(" + data.pageSize + ","+j+")'>" + j + "</a>";
+                } else {
+                    a = a = "<a id='a"+j+"' href=\"#\" class=\"\" onclick='showNotice(" + data.pageSize + ","+j+")'>" + j + "</a>";
+                }
+                p.append(a);
+            }
+            var next = "<a href=\"#\" onclick='showNotice(" + data.pageSize + ","+data.nextPage+")'>下一页</a>";
+            var end = "<a href=\"#\" onclick='showNotice(" + data.pageSize + ","+data.lastPage+")'>尾页</a>";
+            p.append(next+end);
+        }
+
+        //分页ajax
+        function showNotice(pageSize,page) {
+            $.get("showNoticeList", {"page": page, "pageSize": pageSize}, function (data) {
+                $("#noticeUl").empty();
+                $("#p").empty();
+                showData(data);
+            });
         }
     </script>
 </head>
@@ -107,13 +131,8 @@
                 <h2 class="notic_secr_tit">网站公告</h2>
                 <ul class="notic_secr_ul" id="noticeUl">
                 </ul>
-                <p class="notic_pagelink">
-                    <a href="#" class="notic_acur">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">下一页</a>
-                    <a href="#">尾页</a>
+                <p class="notic_pagelink" id="p">
+
                 </p>
             </div>
         </div>

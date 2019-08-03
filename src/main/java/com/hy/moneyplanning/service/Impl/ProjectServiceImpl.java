@@ -39,4 +39,10 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Top> showTop() {
         return projectMapper.showTop();
     }
+
+    @Override
+    public Project selectProjectDetailById(int id) {
+        return projectMapper.selectProjectDetailById(id);
+
+    }
 }
