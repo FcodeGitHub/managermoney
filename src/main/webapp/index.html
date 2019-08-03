@@ -46,7 +46,7 @@
 					"<div class=\"block2_biao_r fr\"><div class=\"tjxm_jindu \"><div class=\"press_wper fl\"><div class=\"press\"></div></div><span class=\"fl\">11%</span></div></div></div>" +
 					"<ul class=\"clearfix proone_center_ul clear pt10\">"+
 					"<li>预计年华收益:<span>"+data[i].yearsHaving + "</span></li>" +
-					"<li>投资期限:<span>" + data[i].months + "</span></li>" +
+					"<li>投资期限:<span>" + data[i].months + "个月</span></li>" +
 					"<li>借款金额：<span>" + data[i].money + "</span></li>" +
 					"</ul></div><a href=\"detail.html?id="+id+"\" class=\"block3_btn fl\">立即投资</a></div>"
 
@@ -163,6 +163,8 @@
 						"<span>"+ data[i].invested +"</span>\n" +
 						"<span>"+ data[i].yield +"</span>\n" +
 						"</li>"
+				$("#weekList").append(str);
+				$("#monthList").append(str);
 				$("#topList").append(str);
 			}
 		}
@@ -372,10 +374,11 @@
 	         	    </div>
          	    </div>
          	    <div class="zscf_block5_r fl">
-         	    	 <h2 class="block5_r_tit clearfix"><span class="fl ">投资排行榜</span><em class="fr block5_r_tit_em"><a href="javascript:;" class="brt_acur">月排行</a><a href="javascript:;">周排行</a><a href="javascript:;">总排行</a></em></h2>
+         	    	 <h2 class="block5_r_tit clearfix"><span class="fl ">投资排行榜</span><em class="fr block5_r_tit_em"><a href="javascript:;" class="brt_acur" onclick="showMonthTopList()">月排行</a><a href="javascript:;" onclick="showWeekTopList()">周排行</a><a href="javascript:;" onclick="showAllTopList()">总排行</a></em></h2>
          	    	 <div class="rank_box">
          	    	 	  <div class="rank_list">
-         	    	 	  	    <ul class="rank_list_ul" id="topList">
+         	    	 	  	    <ul class="rank_list_ul" id="monthList">
+									1111
          	    	 	  	    	 <!--<li>
          	    	 	  	    	 	 <em class="rank_bg01">1</em>
          	    	 	  	    	 	 <a href="#">llsdfasd</a>
@@ -388,11 +391,15 @@
          	    	 	  </div>
          	    	 	  <!-- end --> 
          	    	 	  <div class="rank_list" style="display:none;">
-         	    	 	  	  2
+							  <ul class="rank_list_ul" id="weekList">
+									2222
+							  </ul>
          	    	 	  </div>
          	    	 	  <!-- end -->
          	    	 	   <div class="rank_list" style="display:none;">
-         	    	 	  	  3
+							   <ul class="rank_list_ul" id="topList">
+								  3333
+							   </ul>
          	    	 	  </div>
          	    	 	  <!-- end -->
          	    	 </div>
@@ -489,6 +496,8 @@
 </div>
 <!-- footer end -->
 <script>
+
+	//展示媒体新闻
 	function showNewList() {
 
 		//alert("888888");
@@ -498,11 +507,44 @@
 </script>
 
 <script>
+	//展示行业动态
 	function showDynamicList() {
 
 		$("#dynamicsList").show();
 		$("#News").hide();
 	}
 </script>
+
+<script>
+	//展示月排行
+	function showMonthTopList() {
+
+		$("#weekList").hide();
+		$("#topList").hide();
+		$("#monthList").show();
+	}
+</script>
+
+<script>
+	//展示总排行
+	function showAllTopList() {
+
+		$("#weekList").hide();
+		$("#topList").show();
+		$("#monthList").hide();
+
+	}
+</script>
+
+<script>
+	//展示周排行
+	function showWeekTopList() {
+
+		$("#weekList").show();
+		$("#topList").hide();
+		$("#monthList").hide();
+	}
+</script>
+
 </body>
 </html>
