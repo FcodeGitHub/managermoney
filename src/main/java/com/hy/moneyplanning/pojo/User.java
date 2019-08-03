@@ -2,9 +2,12 @@ package com.hy.moneyplanning.pojo;
 
 public class User {
     private int id;
-    private String username;
-    private String password;
-    private String phonenum;
+    private String userName;
+    private String passWord;
+    private String phoneNum;
+
+    public User() {
+    }
 
     public int getId() {
         return id;
@@ -14,37 +17,37 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public String getPhonenum() {
-        return phonenum;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", phonenum='" + phonenum + '\'' +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
                 '}';
     }
 }
