@@ -45,4 +45,19 @@ public class ProjectServiceImpl implements ProjectService {
         return projectMapper.selectProjectDetailById(id);
 
     }
+
+    @Override
+    public Company selectProjectById(int id) {
+        return projectMapper.selectProjectById(id);
+    }
+
+    @Override
+    public ControlInfo selectControlInfo(int id) {
+        ControlInfo controlInfo = projectMapper.selectControlInfo(id);
+        Safety safety = projectMapper.selectSafety(controlInfo.getSafetyId());
+        RiskControl riskControl = projectMapper.selectRiskControl(controlInfo.getRiskcontrolId());
+        controlInfo.setSafety(safety);
+        controlInfo.setRiskControl(riskControl);
+        return controlInfo;
+    }
 }

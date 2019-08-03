@@ -70,4 +70,21 @@ public class ProjectController {
         return projectService.selectProjectDetailById(id);
     }
 
+    /**
+     * 通过项目id查询项目描述
+     */
+    @RequestMapping("/selectProjectById")
+    public Company selectProjectById(int id) {
+        return projectService.selectProjectById(id);
+    }
+
+
+    /**
+     * 通过项目id查询风控信息
+     */
+    @RequestMapping("/selectControlInfo")
+    public ControlInfo selectControlInfo(int id) {
+        return projectService.selectControlInfo(id);
+    }
+
 }

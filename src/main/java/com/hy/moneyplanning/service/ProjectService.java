@@ -18,4 +18,14 @@ public interface ProjectService {
      * 通过id查询
      */
     Project selectProjectDetailById(int id);
+
+    /**
+     * 通过项目id查询项目描述
+     */
+    Company selectProjectById(int id);
+
+    /**
+     * 通过项目id查询风控信息
+     */
+    ControlInfo selectControlInfo(int id);
 }

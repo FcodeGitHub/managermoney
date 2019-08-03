@@ -29,4 +29,19 @@
         select * from projectList where id = #{id}
     </select>
 
+    <select id="selectProjectById" parameterType="int" resultType="Company">
+        select * from company where projectId = #{id}
+    </select>
+
+    <select id="selectControlInfo" parameterType="int" resultType="ControlInfo">
+        select * from controlInfo where projectId = #{id}
+    </select>
+
+    <select id="selectSafety" parameterType="int" resultType="Safety">
+        select * from safety where id = #{safetyId}
+    </select>
+
+    <select id="selectRiskControl" parameterType="int" resultType="RiskControl">
+        select * from riskControl where id = #{riskcontrolId}
+    </select>
 </mapper>
