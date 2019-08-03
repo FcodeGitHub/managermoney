@@ -15,20 +15,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //展示注册界面
-    @RequestMapping("/show")
-   public String showLogin() {
-       return "register";
-   }
-
     /**
      * 验证用户名/手机号是否存在
      */
     @RequestMapping("/validateName")
     public List<User> validateName() {
         // 调用方法查询
-        List<User> userList= userService.validateName();
-      return userList;
+
+      return null;
     }
 
     /**
