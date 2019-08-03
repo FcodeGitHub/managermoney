@@ -31,12 +31,10 @@
             var id = GetQueryString("id");
             // 拼接字符串使用
             var a = "";
-            $.get("selectProjectDetailById", {"id": id}, function (data) {
-                //alert(1111);
             $.get("project/selectProjectDetailById", {"id": id}, function (data) {
                 a = " <div class=\"detail_introl_tit clearfix\">" +
                     "                    <div class=\"det_introl_tit_l fl\">\n" +
-                    "                        <span>抵押</span> "+data.projectName+"" +
+                    "                        <span>抵押</span> " + data.projectName + "" +
                     "                    </div>\n" +
                     "                    <!-- end l -->\n" +
                     "                    <div class=\"det_introl_tit_r fr\">\n" +
@@ -49,47 +47,48 @@
                     "                        <li>\n" +
                     "                            年华收益<br>\n" +
                     "                            <span style=\"color:#ff7112;\">\n" +
-                    "\t  \t     \t    \t  \t    <strong>"+data.yearsHaving+"</strong> 年华\n" +
+                    "\t  \t     \t    \t  \t    <strong>" + data.yearsHaving + "</strong> 年华\n" +
                     "                                </span>\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
                     "                            项目期限<br>\n" +
                     "                            <span>\n" +
-                    "                                <strong>"+data.months+"</strong>个月\n" +
+                    "                                <strong>" + data.months + "</strong>个月\n" +
                     "                            </span>\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
                     "                            项目规模<br>\n" +
                     "                            <span>\n" +
-                    "                                <strong>"+data.needMoney+"</strong>万\n" +
+                    "                                <strong>" + data.needMoney + "</strong>万\n" +
                     "                            </span>\n" +
                     "                        </li>\n" +
                     "                    </ul>\n" +
                     "                    <!-- end  -->\n" +
                     "                    <ul class=\"det_intro_tul2 clearfix\">\n" +
                     "                        <li>\n" +
-                    "                            发布日期："+data.createTime+"\n" +
+                    "                            发布日期：" + data.createTime + "\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
-                    "                            "+data.repaymentType+"\n" +
+                    "                            " + data.repaymentType + "\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
-                    "                            还款日期："+data.repaymentTime+"\n" +
+                    "                            还款日期：" + data.repaymentTime + "\n" +
                     "                        </li>\n" +
                     "                        <li>\n" +
-                    "                            "+data.guarantee+"\n" +
+                    "                            " + data.guarantee + "\n" +
                     "                        </li>\n" +
                     "                    </ul>\n" +
                     "                </div>";
                 $("#showProject").append(a);
                 projectClick();
+
             });
         });
 
         // 项目描述事件
         function projectClick() {
             var id = GetQueryString("id");
-            $.get("project/selectProjectById",{"id":id},function (data) {
+            $.get("project/selectProjectById", {"id": id}, function (data) {
                 $("#projectSpan").addClass("det_tit_curspan");
                 $("#controlSpan").removeClass("det_tit_curspan");
                 showProjectDetail(data);
@@ -101,9 +100,9 @@
             var project = "<div class=\"det_proone_l\" id=\"projectShow\">" +
                 "<h2 class=\"det_proone_tit\">借款企业</h2>\n" +
                 "                            <div class=\"det_clsj \">\n" +
-                "                                <p>成立时间：<strong>"+data.createTime+"</strong></p>\n" +
+                "                                <p>成立时间：<strong>" + data.createTime + "</strong></p>\n" +
                 "                                <p><span\n" +
-                "                                        style=\"margin-right:150px;\">公司地址：<strong>"+data.address+"</strong></span>所属行业：<strong>"+data.type+"</strong>\n" +
+                "                                        style=\"margin-right:150px;\">公司地址：<strong>" + data.address + "</strong></span>所属行业：<strong>" + data.type + "</strong>\n" +
                 "                                </p>\n" +
                 "                            </div>\n" +
                 "                            <div class=\"det_clsj \">\n" +
@@ -115,20 +114,20 @@
                 "                            <h2 class=\"det_proone_tit mt30\">基本信息</h2>\n" +
                 "                            <div class=\"det_clsj \">\n" +
                 "                                <ul class=\"det_clsj_ul\">\n" +
-                "                                    <li>融资企业："+data.name+"</li>\n" +
+                "                                    <li>融资企业：" + data.name + "</li>\n" +
                 "                                    <li>\n" +
-                "                                        注册资金：人名币"+data.fund+"元整\n" +
+                "                                        注册资金：人名币" + data.fund + "元整\n" +
                 "                                    </li>\n" +
                 "\n" +
                 "                                </ul>\n" +
                 "                            </div>\n" +
                 "                            <h2 class=\"det_proone_tit mt30\">企业经营状况</h2>\n" +
                 "                            <div class=\"det_clsj\">\n" +
-                "                                "+data.manageState+"\n" +
+                "                                " + data.manageState + "\n" +
                 "                            </div>\n" +
                 "                            <h2 class=\"det_proone_tit mt30\">财务状况</h2>\n" +
                 "                            <div class=\"det_clsj\">\n" +
-                "                                "+data.moneyState+"\n" +
+                "                                " + data.moneyState + "\n" +
                 "                            </div>" +
                 "</div>";
             $("#divAll").empty();
@@ -138,7 +137,7 @@
         // 风控信息展示
         function showControlInfo() {
             var id = GetQueryString("id");
-            $.get("project/selectControlInfo",{"id":id},function (data) {
+            $.get("project/selectControlInfo", {"id": id}, function (data) {
                 $("#controlSpan").addClass("det_tit_curspan");
                 $("#projectSpan").removeClass("det_tit_curspan");
                 var controlInfo = "<div class=\"det_proone_l\">\n" +
@@ -150,45 +149,45 @@
                     "                                        <li>\n" +
                     "                                            <div class=\"small-tit\">基本信息</div>\n" +
                     "                                            <div class=\"progress-bar\">\n" +
-                    "                                                <div class=\"progress-bar-in\" style=\"width:"+data.basicInfo+"%\"></div>\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.basicInfo + "%\"></div>\n" +
                     "                                            </div>\n" +
-                    "                                            <div class=\"progress-bar-txt\">"+data.basicInfo+"分</div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.basicInfo + "分</div>\n" +
                     "                                        </li>\n" +
                     "                                        <li>\n" +
                     "                                            <div class=\"small-tit\">财务实力</div>\n" +
                     "                                            <div class=\"progress-bar\">\n" +
-                    "                                                <div class=\"progress-bar-in\" style=\"width:"+data.money+"%\"></div>\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.money + "%\"></div>\n" +
                     "                                            </div>\n" +
-                    "                                            <div class=\"progress-bar-txt\">"+data.money+"分</div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.money + "分</div>\n" +
                     "                                        </li>\n" +
                     "                                        <li>\n" +
                     "                                            <div class=\"small-tit\">经营情况</div>\n" +
                     "                                            <div class=\"progress-bar\">\n" +
-                    "                                                <div class=\"progress-bar-in\" style=\"width:"+data.manageState+"%\"></div>\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.manageState + "%\"></div>\n" +
                     "                                            </div>\n" +
-                    "                                            <div class=\"progress-bar-txt\">"+data.manageState+"分</div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.manageState + "分</div>\n" +
                     "                                        </li>\n" +
                     "                                        <li>\n" +
                     "                                            <div class=\"small-tit\">偿还能力</div>\n" +
                     "                                            <div class=\"progress-bar\">\n" +
-                    "                                                <div class=\"progress-bar-in\" style=\"width:"+data.repay+"%\"></div>\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.repay + "%\"></div>\n" +
                     "                                            </div>\n" +
-                    "                                            <div class=\"progress-bar-txt\">"+data.repay+"分</div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.repay + "分</div>\n" +
                     "                                        </li>\n" +
                     "                                        <li>\n" +
                     "                                            <div class=\"small-tit\">实际控制人</div>\n" +
                     "                                            <div class=\"progress-bar\">\n" +
-                    "                                                <div class=\"progress-bar-in\" style=\"width:"+data.manager+"%\"></div>\n" +
+                    "                                                <div class=\"progress-bar-in\" style=\"width:" + data.manager + "%\"></div>\n" +
                     "                                            </div>\n" +
-                    "                                            <div class=\"progress-bar-txt\">"+data.manager+"分</div>\n" +
+                    "                                            <div class=\"progress-bar-txt\">" + data.manager + "分</div>\n" +
                     "                                        </li>\n" +
                     "                                    </ul>\n" +
                     "                                    <div class=\"project-assess-pt2\" style=\" color: #ff5a00;\">\n" +
-                    "                                        <p class=\"p1\">"+data.grade+"<span class=\"small-txt\" style=\"font-size:12px;\">分</span></p>\n" +
+                    "                                        <p class=\"p1\">" + data.grade + "<span class=\"small-txt\" style=\"font-size:12px;\">分</span></p>\n" +
                     "                                        <p class=\"p2\">综合信用评分</p>\n" +
                     "                                    </div>\n" +
                     "                                    <div class=\"project-assess-pt3\">\n" +
-                    "                                        <p class=\"p1\">"+data.creditLevel+"</p>\n" +
+                    "                                        <p class=\"p1\">" + data.creditLevel + "</p>\n" +
                     "                                        <p class=\"p2\">综合信用等级</p>\n" +
                     "                                    </div>\n" +
                     "                                </div>\n" +
@@ -202,33 +201,33 @@
                     "                                    <dt>担保方</dt>\n" +
                     "                                    <dd><em class=\"company-logo-sprite\"\n" +
                     "                                            style=\"background:url(https://dn-licaifan-upload.qbox.me/uploads/admin/e9fb6a4feac008a08ab67dc3dc2244a2.png)\"></em><span><a\n" +
-                    "                                            href=\"/vouch/detail/8\" target=\"_blank\">"+data.guarantee+"</a></span></dd>\n" +
+                    "                                            href=\"/vouch/detail/8\" target=\"_blank\">" + data.guarantee + "</a></span></dd>\n" +
                     "                                </dl>\n" +
                     "                                <dl class=\"dl2 clearfix\">\n" +
                     "                                    <dt style=\"height:200px;line-height:20px;\">保障措施</dt>\n" +
                     "                                    <dd>\n" +
-                    "                                        <p>1、"+data.safety.one+"；</p>\n" +
-                    "                                        <p>2、"+data.safety.two+"；</p>\n" +
-                    "                                        <p>3、"+data.safety.three+"；</p>\n" +
-                    "                                        <p>4、"+data.safety.four+"；</p>\n" +
-                    "                                        <p>5、"+data.safety.five+"。</p>\n" +
+                    "                                        <p>1、" + data.safety.one + "；</p>\n" +
+                    "                                        <p>2、" + data.safety.two + "；</p>\n" +
+                    "                                        <p>3、" + data.safety.three + "；</p>\n" +
+                    "                                        <p>4、" + data.safety.four + "；</p>\n" +
+                    "                                        <p>5、" + data.safety.five + "。</p>\n" +
                     "                                        <p><br></p></dd>\n" +
                     "                                </dl>\n" +
                     "                            </div>\n" +
                     "                            <!--  -->\n" +
                     "                            <h2 class=\"det_proone_tit\">抵押物信息</h2>\n" +
-                    "                            <div class=\"det_dywxx_ul\">"+data.guaranteeInfo+"</div>\n" +
+                    "                            <div class=\"det_dywxx_ul\">" + data.guaranteeInfo + "</div>\n" +
                     "                            <!-- end 抵押物信息 -->\n" +
                     "                            <h2 class=\"det_proone_tit\">风险控制措施</h2>\n" +
                     "                            <ul class=\"det_dywxx_ul\">\n" +
-                    "                                <li>1、"+data.riskControl.one+"；</li>\n" +
-                    "                                <li>2、"+data.riskControl.two+"；</li>\n" +
-                    "                                <li>3、"+data.riskControl.three+"；</li>\n" +
-                    "                                <li>4、"+data.riskControl.four+"。</li>\n" +
+                    "                                <li>1、" + data.riskControl.one + "；</li>\n" +
+                    "                                <li>2、" + data.riskControl.two + "；</li>\n" +
+                    "                                <li>3、" + data.riskControl.three + "；</li>\n" +
+                    "                                <li>4、" + data.riskControl.four + "。</li>\n" +
                     "                            </ul>\n" +
                     "                            <!-- end 风险控制 -->\n" +
                     "                            <h2 class=\"det_proone_tit\">担保机构意见</h2>\n" +
-                    "                            <div class=\"det_dywxx_ul\">"+data.guaranteeIdea+"</div>\n" +
+                    "                            <div class=\"det_dywxx_ul\">" + data.guaranteeIdea + "</div>\n" +
                     "                            <!-- end 抵押物信息 -->\n" +
                     "                        </div>";
                 $("#divAll").empty();
