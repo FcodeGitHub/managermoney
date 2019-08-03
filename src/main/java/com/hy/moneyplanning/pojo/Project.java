@@ -1,5 +1,7 @@
 package com.hy.moneyplanning.pojo;
 
+import java.util.Date;
+
 public class Project {
 
     private int id;
@@ -7,6 +9,11 @@ public class Project {
     private String yearsHaving;
     private String months;
     private String money;
+    private String createTime;
+    private String repaymentTime;
+    private String needMoney;
+    private String repaymentType;
+    private String guarantee;
 
     public Project() {
     }
@@ -59,6 +66,46 @@ public class Project {
         this.money = money;
     }
 
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getRepaymentTime() {
+        return repaymentTime;
+    }
+
+    public void setRepaymentTime(String repaymentTime) {
+        this.repaymentTime = repaymentTime;
+    }
+
+    public String getNeedMoney() {
+        return needMoney;
+    }
+
+    public void setNeedMoney(String needMoney) {
+        this.needMoney = needMoney;
+    }
+
+    public String getRepaymentType() {
+        return repaymentType;
+    }
+
+    public void setRepaymentType(String repaymentType) {
+        this.repaymentType = repaymentType;
+    }
+
+    public String getGuarantee() {
+        return guarantee;
+    }
+
+    public void setGuarantee(String guarantee) {
+        this.guarantee = guarantee;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -67,6 +114,11 @@ public class Project {
                 ", yearsHaving='" + yearsHaving + '\'' +
                 ", months='" + months + '\'' +
                 ", money='" + money + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", repaymentTime='" + repaymentTime + '\'' +
+                ", needMoney='" + needMoney + '\'' +
+                ", repaymentType='" + repaymentType + '\'' +
+                ", guarantee='" + guarantee + '\'' +
                 '}';
     }
 }
