@@ -1,8 +1,6 @@
 package com.hy.moneyplanning.service;
 
-import com.hy.moneyplanning.pojo.Dynamic;
-import com.hy.moneyplanning.pojo.News;
-import com.hy.moneyplanning.pojo.Project;
+import com.hy.moneyplanning.pojo.*;
 
 import java.util.List;
 
@@ -13,6 +11,9 @@ public interface ProjectService {
 
     List<News> newsList();
 
+    List<Notice> showInfo();
+
+    List<Top> showTop();
     /**
      * 通过id查询
      */

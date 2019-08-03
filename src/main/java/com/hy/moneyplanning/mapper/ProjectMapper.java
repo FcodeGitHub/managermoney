@@ -1,8 +1,6 @@
 package com.hy.moneyplanning.mapper;
 
-import com.hy.moneyplanning.pojo.Dynamic;
-import com.hy.moneyplanning.pojo.News;
-import com.hy.moneyplanning.pojo.Project;
+import com.hy.moneyplanning.pojo.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,6 +13,9 @@ public interface ProjectMapper {
 
     List<News> newsList();
 
+    List<Notice> showInfo();
+
+    List<Top> showTop();
     /**
      * 通过id查询
      */

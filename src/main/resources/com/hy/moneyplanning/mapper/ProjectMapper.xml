@@ -16,6 +16,15 @@
         select * from news
     </select>
 
+
+    <select id="showInfo" resultType="com.hy.moneyplanning.pojo.Notice">
+        select * from notice order by createTime asc
+    </select>
+
+    <select id="showTop" resultType="com.hy.moneyplanning.pojo.Top">
+        select * from top t,user u where t.userId = u.id
+    </select>
+
     <select id="selectProjectDetailById" parameterType="int" resultType="com.hy.moneyplanning.pojo.Project">
         select * from projectList where id = #{id}
     </select>
