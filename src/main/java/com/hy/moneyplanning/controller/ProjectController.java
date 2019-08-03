@@ -50,5 +50,12 @@ public class ProjectController {
         return newsList;
     }
 
+    /**
+     * 通过id查询
+     */
+    @RequestMapping("/selectProjectDetailById")
+    public Project selectProjectDetailById(int id) {
+        return projectService.selectProjectDetailById(id);
+    }
 
 }

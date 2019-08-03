@@ -14,4 +14,9 @@ public interface ProjectMapper {
     List<Dynamic> dynamicsList();
 
     List<News> newsList();
+
+    /**
+     * 通过id查询
+     */
+    Project selectProjectDetailById(int id);
 }

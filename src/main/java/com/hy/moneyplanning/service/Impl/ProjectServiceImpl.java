@@ -31,4 +31,9 @@ public class ProjectServiceImpl implements ProjectService {
     public List<News> newsList() {
         return projectMapper.newsList();
     }
+
+    @Override
+    public Project selectProjectDetailById(int id) {
+        return projectMapper.selectProjectDetailById(id);
+    }
 }

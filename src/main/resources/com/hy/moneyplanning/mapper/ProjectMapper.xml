@@ -16,4 +16,8 @@
         select * from news
     </select>
 
+    <select id="selectProjectDetailById" parameterType="int" resultType="com.hy.moneyplanning.pojo.Project">
+        select * from projectList where id = #{id}
+    </select>
+
 </mapper>
