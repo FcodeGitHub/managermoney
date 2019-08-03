@@ -7,6 +7,7 @@
     <!-- <link rel="stylesheet/less" type="text/css" href="css/style.less" /> -->
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/all.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
     <!--[if IE 6]>
     <script src="./js/iepng.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -17,14 +18,15 @@
         $(function () {
             $("#button").click(function () {
                 $.ajax({
-                    url: "/user/register", // 请求路径
+                    url: "/register", // 请求路径
                     type: "POST", //请求方式
                     //data: "username=jack&age=23",//请求参数
                     //data:{"username":"jack","age":23},
                     data: $("#stu").serialize(),
                     success: function (data) {
-                        alert(data);
+                        alert("data");
                         location.href = "index.html";
+
                     },//响应成功后的回调函数
                     false: function () {
                         alert("出错啦...");
@@ -92,17 +94,18 @@
                         </p>
                         <p class="mt20">
                             <input type="text" name="phoneNum" placeholder="手机号" class="lg_input03 lg_input">
+
                         </p>
-                        <p class="mt20 yanzheng">
-                            <input type="text" placeholder="验证码" class="lg_input04 lg_input">
+                        <p class="mt20">
+                           <input type="text" placeholder="验证码" class="lg_input04 lg_input">
                             <span href="#">发送验证码</span>
                         </p>
                         <p class="mt20">
                             <input type="text" placeholder="邀请码" class="lg_input03 lg_input">
                         </p>
                         <p class="pt10"><a href="#">使用条款</a>&nbsp;&nbsp;<a href="#">隐私条款</a></p>
-                        <!--<p class="mt20"><a href="#" class="lg_btn">立即登陆</a></p>-->
-                        <p class="mt20"><a href="" class="lg_btn" id="button">立即登陆</a></p>
+                        <p class="mt20"><a href="#" class="lg_btn">立即登陆</a></p>
+
                     </fieldset>
                 </form>
             </div>

@@ -11,6 +11,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+
+    @Override
+    public String selectUser(User user) {
+        int result = userMapper.selectuser(user);
+        System.out.println(result);
+        if (result>0){
+            return "success";
+        }else {
+            return "fail";
+        }
+
+    }
     //验证账户是否存在
 
 
