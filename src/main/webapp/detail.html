@@ -88,15 +88,18 @@
                     "                </div>\n" +
                     "                <!--  -->\n" +
                     "                <p class=\"det_rzye clearfix\"><span class=\"fl\">融资余额</span><em\n" +
-                    "                        class=\"fr\"><strong>"+data.money+"</strong></em></p>\n" +
+                    "                        class=\"fr\"><strong>" + data.money + "</strong></em></p>\n" +
                     "                <p class=\"det_input\">\n" +
                     "                    <input type=\"text\" placeholder=\"100\">\n" +
                     "                </p>\n" +
-                    "                <p class=\"det_shouyi\">每投资1万元收益<strong>"+data.perMoney+"</strong></p>\n" +
+                    "                <p class=\"det_shouyi\">每投资1万元收益<strong>" + data.perMoney + "</strong></p>\n" +
                     "                <p><a href=\"#\" class=\" pro_btn det_btn\">立即投资</a></p>";
                 $("#showProject").append(a);
                 $("#invest").append(b);
                 projectClick();
+                $.get("selectUserComment", {"id": id}, function (data) {
+                    showUserComment(data);
+                });
             });
         });
 
@@ -320,7 +323,7 @@
         // 投标记录展示
         function showRecord() {
             var id = GetQueryString("id");
-            $.get("project/selectRecord",{"id":id},function (data) {
+            $.get("project/selectRecord", {"id": id}, function (data) {
                 $("#controlSpan").removeClass("det_tit_curspan");
                 $("#projectSpan").removeClass("det_tit_curspan");
                 $("#manageSpan").removeClass("det_tit_curspan");
@@ -345,13 +348,44 @@
                 $("#divAll").append(record);
                 $(data).each(function () {
                     var tr = "<tr>\n" +
-                        "<td>"+this.userName+"</td>\n" +
-                        "<td>"+this.money+".00元</td>\n" +
-                        "<td>"+this.createTime+"</td>\n" +
-                        "<td>"+this.state+"</td>\n" +
+                        "<td>" + this.userName + "</td>\n" +
+                        "<td>" + this.money + ".00元</td>\n" +
+                        "<td>" + this.createTime + "</td>\n" +
+                        "<td>" + this.state + "</td>\n" +
                         "</tr>";
                     $("#recordTable").append(tr);
                 });
+            });
+        }
+
+        // 用户评论展示
+        function showUserComment(data) {
+            $(data).each(function () {
+                var comment = "<li class=\"clearfix\">\n" +
+                    "\t  \t     \t   \t     \t <span class=\"fl mr30\">\n" +
+                    "\t  \t     \t   \t     \t   <img src=\"images/comment_pic03.png\" alt=\"\">\t\n" +
+                    "\t  \t     \t   \t     \t </span>\n" +
+                    "                        <div class=\"fl ml\">\n" +
+                    "                            <h3>"+this.userName+"</h3>\n" +
+                    "                            <p>"+this.comment+"</p>\n" +
+                    "                            <p>"+this.createTime+"</p>\n" +
+                    "                        </div>\n" +
+                    "                    </li>";
+                $("#userComment").append(comment);
+            });
+        }
+
+        // 添加用户评论
+        function insertUserComment() {
+            var id = GetQueryString("id");
+            var comment = $("textarea").val();
+            $.get("insertUserComment",{"comment":comment,"id":id},function (data) {
+                if (data == '') {
+                    location.href = "/login.html";
+                } else {
+                    $("#userComment").empty();
+                    showUserComment(data);
+                }
             });
         }
     </script>
@@ -484,30 +518,11 @@
                 <!-- end r -->
             </div>
             <div class="comment_btn clearfix">
-                <a href="#" class="det_btn">提交</a>
+                <a href="#" class="det_btn" onclick="insertUserComment()">提交</a>
             </div>
             <div class="comment_show">
-                <ul class="comment_show_ul">
-                    <li class="clearfix">
-	  	     	   	     	 <span class="fl mr30">
-	  	     	   	     	   <img src="images/comment_pic03.png" alt="">	
-	  	     	   	     	 </span>
-                        <div class="fl ml">
-                            <h3>发布的风向 标</h3>
-                            <p><img src="images/comment_pic04.png" alt=""></p>
-                            <p>前天 13:40</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-	  	     	   	     	 <span class="fl mr30">
-	  	     	   	     	   <img src="images/comment_pic03.png" alt="">	
-	  	     	   	     	 </span>
-                        <div class="fl ml">
-                            <h3>发布的风向 标</h3>
-                            <p><img src="images/comment_pic04.png" alt=""></p>
-                            <p>前天 13:40</p>
-                        </div>
-                    </li>
+                <ul class="comment_show_ul" id="userComment">
+
                 </ul>
             </div>
         </div>
