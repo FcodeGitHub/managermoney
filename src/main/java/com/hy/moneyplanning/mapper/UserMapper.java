@@ -8,8 +8,9 @@ public interface UserMapper {
 
     int selectuser(User user);
 
-    //验证账户是否存在
-
     //注册
     int register(User user);
+
+    //验证账户是否存在
+    int selectByPhoneNum(String phoneNum);
 }
