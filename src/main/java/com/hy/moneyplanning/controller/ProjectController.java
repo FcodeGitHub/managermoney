@@ -116,4 +116,12 @@ public class ProjectController {
         return projectService.selectRecord(id);
     }
 
+    //展示公司财富详情
+    @RequestMapping("/showCompanyDetail")
+    public CompanyDetail showCompanyDetail(){
+
+        CompanyDetail companyDetail = projectService.showCompanyDetail();
+        return companyDetail;
+    }
+
 }

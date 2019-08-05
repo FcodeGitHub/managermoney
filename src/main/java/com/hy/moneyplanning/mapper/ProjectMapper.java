@@ -59,4 +59,7 @@ public interface ProjectMapper {
      */
     List<RecordUser> selectRecord(int id);
 
+    int selectAllMoney();
+
+    int selectPeoples();
 }

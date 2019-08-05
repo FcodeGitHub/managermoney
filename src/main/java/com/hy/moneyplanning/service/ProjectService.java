@@ -42,4 +42,5 @@ public interface ProjectService {
      */
     List<RecordUser> selectRecord(int id);
 
+    CompanyDetail showCompanyDetail();
 }

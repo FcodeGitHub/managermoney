@@ -77,4 +77,12 @@ public class ProjectServiceImpl implements ProjectService {
         public List<RecordUser> selectRecord ( int id){
             return projectMapper.selectRecord(id);
         }
+
+    @Override
+    public CompanyDetail showCompanyDetail() {
+        CompanyDetail companyDetail = new CompanyDetail();
+        companyDetail.setNum(projectMapper.selectPeoples());
+        companyDetail.setAllMoney(projectMapper.selectAllMoney());
+        return companyDetail;
+    }
 }

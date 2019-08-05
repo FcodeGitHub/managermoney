@@ -60,4 +60,12 @@
     <select id="selectRecord" parameterType="int" resultType="com.hy.moneyplanning.pojo.RecordUser">
         select * from record_user where projectId = #{id}
     </select>
+
+    <select id="selectAllMoney" resultType="int">
+        select sum(money) from record_user
+    </select>
+
+    <select id="selectPeoples" resultType="int">
+        select count(1) from user
+    </select>
 </mapper>

@@ -209,6 +209,30 @@
 				$("#topList").append(str);
 			}
 		}
+
+		//展示公司财富详情
+		$(function () {
+			$.ajax({
+				url:"project/showCompanyDetail",
+				type:"post",
+				dataType:"json",
+				success:function (data) {
+					showCompanyDetail(data);
+				}
+			});
+		});
+
+		function showCompanyDetail(data) {
+
+			str = "<li><span class=\"block1_libg01\">已加入中兴财富</span><br>\n" +
+					"<em><strong>"+data.num+"</strong>人</em></li>\n" +
+					"<li><span class=\"block1_libg02\">已加入中兴财富</span><br>\n" +
+					"<em><strong>"+data.allMoney+"</strong>￥</em></li>\n" +
+					"<li><span class=\"block1_libg03\">已加入中兴财富</span><br>\n" +
+					"<em><strong>"+data.allMoney+"</strong>￥</em></li>"
+
+			$("#money").append(str);
+		}
 	</script>
 
 </head>
@@ -277,8 +301,8 @@
 	      <div class="zscf_block1 mt30 ">
 	      	  <h2 class="zscf_block1_tit clearfix"><span class="fl"><strong>发标预告</strong>换卡后放假啊客户看 将黑金卡号看见啊后防盗卡…… </span><a href="#" class="fr">查看更多>></a></h2>
 	      	  <div class="clearfix clear" >
-		      	  <ul class="zscf_block1_text clearfix fl" style="margin-top:5%">
-		      	  	   <li>
+		      	  <ul class="zscf_block1_text clearfix fl" style="margin-top:5%" id="money">
+		      	  	   <!--<li>
 		      	  	   	   <span class="block1_libg01">已加入中兴财富</span>
 		      	  	   	   <br>
 		      	  	   	   <em><strong>123123</strong>人</em>
@@ -286,13 +310,13 @@
 		      	  	   <li>
 		      	  	   	   <span class="block1_libg02">已加入中兴财富</span>
 		      	  	   	   <br>
-		      	  	   	   <em><strong>123123</strong>人</em>
+		      	  	   	   <em><strong>123123</strong>￥</em>
 		      	  	   </li>
 		      	  	   <li>
 		      	  	   	   <span class="block1_libg03">已加入中兴财富</span>
 		      	  	   	   <br>
-		      	  	   	   <em><strong>123123</strong>人</em>
-		      	  	   </li>
+		      	  	   	   <em><strong>123123</strong>￥</em>
+		      	  	   </li>-->
 		      	  </ul>
 		      	 <!-- end l -->
 		      	  <div class="block1_r fl">
