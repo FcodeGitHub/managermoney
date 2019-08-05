@@ -3,19 +3,17 @@ package com.hy.moneyplanning.pojo;
 public class Top {
 
     private int id;
-    private int num;
     private int userId;
     private String invested;
-    private String money;
+    private int money;
     private String yield;
     private String username;
 
     public Top() {
     }
 
-    public Top(int id, int num, int userId, String invested, String money, String yield, String username) {
+    public Top(int id, int userId, String invested, int money, String yield, String username) {
         this.id = id;
-        this.num = num;
         this.userId = userId;
         this.invested = invested;
         this.money = money;
@@ -29,14 +27,6 @@ public class Top {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
     }
 
     public int getUserId() {
@@ -55,11 +45,11 @@ public class Top {
         this.invested = invested;
     }
 
-    public String getMoney() {
+    public int getMoney() {
         return money;
     }
 
-    public void setMoney(String money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 
@@ -83,10 +73,9 @@ public class Top {
     public String toString() {
         return "Top{" +
                 "id=" + id +
-                ", num=" + num +
                 ", userId=" + userId +
                 ", invested='" + invested + '\'' +
-                ", money='" + money + '\'' +
+                ", money=" + money +
                 ", yield='" + yield + '\'' +
                 ", username='" + username + '\'' +
                 '}';
