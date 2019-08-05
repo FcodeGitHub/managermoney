@@ -13,15 +13,7 @@
    EvPNG.fix('div, ul, img, li, input,span, p');
 </script>
 <![endif]-->
-	<script>
-		//需要获取到浏览器后面的id值，然后发送ajax请求给controller
-		function GetQueryString(name)
-		{
-			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-			var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
-			if(r!=null)return  unescape(r[2]); return null;
-		}
-	</script>
+
 </head>
 <body>
 <!-- header start -->
@@ -93,20 +85,6 @@
 
 	  	     	  	   <div class="hc_zjwt " id="Recharge">
 
-	 	    	   	   <!-- end proone -->
-	 	    	   	   <div class="hc_zjwt_one mt20">
-	 	    	   	   	    <h3 class="hc_zjwt_onebg01">如何充值？</h3>
-	 	    	   	   	    <div class="hc_answer" style="display: none;">
-	 	    	   	   	    	slabhbshbdljan;vjksdn;kanvkn
-	 	    	   	   	    </div>
-	 	    	   	   </div>
-	 	    	   	   <!-- end proone -->
-	 	    	   	    <div class="hc_zjwt_one mt20">
-	 	    	   	   	    <h3 class="">如何充值？</h3>
-	 	    	   	   	    <div class="hc_answer" style="display: none;">
-	 	    	   	   	    	 asdf sdf asdf asdf asdf asdf asdf asdf sad
-	 	    	   	   	    </div>
-	 	    	   	   </div>
 	 	    	   </div>
 	  	     	  </div>
 	  	     </div>
@@ -164,10 +142,8 @@
 <!-- footer end -->
 <script>
 	$(function () {
-		var id = GetQueryString("id");
 		$.ajax({
 			url:"problem/selectById",
-			data:{},
 			type:"post",
 			dataType:"json",
 			success:function (data) {
@@ -182,13 +158,9 @@
 	function showArticle(data) {
 		$(data).each(function () {
 			var str = "";
-			str =	"\t \t    \t   \t   <div class=\"hc_zjwt_one mt20\">\n" +
-					"\t \t    \t   \t   \t    <h3 class=\"hc_zjwt_onebg01\">"+this.name+"</h3>\n" +
-					"\t \t    \t   \t   \t    <div class=\"hc_answer\" style=\"..display: none;\">\n" +
-					"\t \t    \t   \t   \t    \t "+this.info+"\n" +
-					"\t \t    \t   \t   \t    </div>\n" +
-					"\t \t    \t   \t   </div>\n" +
-					"\t \t    \t   \t   </div>";
+			str = "<div class=\"hc_zjwt_one mt20\" >\n" +
+					"<h3 class=\"hc_zjwt_onebg01\">"+this.name+"</h3>\n" +
+					"<div class=\"hc_answer\" style=\"display: none;\">"+this.info+"</div></div>"
 			$("#Recharge").append(str);
 		});
 	}
