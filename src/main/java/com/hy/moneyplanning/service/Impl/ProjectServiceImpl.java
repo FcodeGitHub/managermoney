@@ -60,4 +60,9 @@ public class ProjectServiceImpl implements ProjectService {
         controlInfo.setRiskControl(riskControl);
         return controlInfo;
     }
+
+    @Override
+    public List<Project> showRecommendList() {
+        return projectMapper.showRecommendList();
+    }
 }

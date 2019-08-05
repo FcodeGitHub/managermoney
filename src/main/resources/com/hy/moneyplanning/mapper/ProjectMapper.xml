@@ -5,7 +5,7 @@
 <mapper namespace="com.hy.moneyplanning.mapper.ProjectMapper">
 
     <select id="showList" resultType="com.hy.moneyplanning.pojo.Project">
-        select * from projectList
+        select * from projectList where type = "普通"
     </select>
 
     <select id="dynamicsList" resultType="com.hy.moneyplanning.pojo.Dynamic">
@@ -22,7 +22,7 @@
     </select>
 
     <select id="showTop" resultType="com.hy.moneyplanning.pojo.Top">
-        select * from top t,user u where t.userId = u.id
+        select * from top t,user u where t.userId = u.id order by t.money desc
     </select>
 
     <select id="selectProjectDetailById" parameterType="int" resultType="com.hy.moneyplanning.pojo.Project">
@@ -43,5 +43,9 @@
 
     <select id="selectRiskControl" parameterType="int" resultType="RiskControl">
         select * from riskControl where id = #{riskcontrolId}
+    </select>
+
+    <select id="showRecommendList" resultType="com.hy.moneyplanning.pojo.Project">
+        select * from projectList where type = "新手" or type ="体验"
     </select>
 </mapper>

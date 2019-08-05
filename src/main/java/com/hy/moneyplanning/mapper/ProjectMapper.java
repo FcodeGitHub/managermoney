@@ -40,4 +40,6 @@ public interface ProjectMapper {
      * 通过id查询风险控制措施
      */
     RiskControl selectRiskControl(Integer riskcontrolId);
+
+    List<Project> showRecommendList();
 }

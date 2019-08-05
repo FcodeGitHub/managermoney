@@ -25,6 +25,19 @@ public class ProjectController {
 
         //System.out.println("666666");
         return projectList;
+
+    }
+
+    /*
+    *推荐列表展示
+     */
+    @RequestMapping("/recommendList")
+    public List<Project> showRecommendList(){
+
+
+        List<Project> recommendList = projectService.showRecommendList();
+
+        return recommendList;
     }
 
 

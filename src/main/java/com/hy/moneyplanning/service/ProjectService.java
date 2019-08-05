@@ -28,4 +28,6 @@ public interface ProjectService {
      * 通过项目id查询风控信息
      */
     ControlInfo selectControlInfo(int id);
+
+    List<Project> showRecommendList();
 }
