@@ -59,4 +59,8 @@ public interface ProjectMapper {
      */
     List<RecordUser> selectRecord(int id);
 
+    /**
+     * 通过项目id查询有多少人投
+     */
+    int selectRecordCount(int id);
 }

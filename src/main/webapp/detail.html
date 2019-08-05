@@ -90,16 +90,19 @@
                     "                <p class=\"det_rzye clearfix\"><span class=\"fl\">融资余额</span><em\n" +
                     "                        class=\"fr\"><strong>" + data.money + "</strong></em></p>\n" +
                     "                <p class=\"det_input\">\n" +
-                    "                    <input type=\"text\" placeholder=\"100\">\n" +
+                    "                    <input type=\"text\" placeholder=\"100\" id='recordUser'>\n" +
                     "                </p>\n" +
                     "                <p class=\"det_shouyi\">每投资1万元收益<strong>" + data.perMoney + "</strong></p>\n" +
-                    "                <p><a href=\"#\" class=\" pro_btn det_btn\">立即投资</a></p>";
+                    "                <p><a href=\"\" class=\" pro_btn det_btn\" onclick='insertRecordUser()'>立即投资</a></p>";
                 $("#showProject").append(a);
                 $("#invest").append(b);
                 projectClick();
                 $.get("selectUserComment", {"id": id}, function (data) {
                     showUserComment(data);
                 });
+                $.post("project/selectRecordCount",{"id":id},function (data) {
+                    $("#count").text(data);
+                })
             });
         });
 
@@ -388,6 +391,23 @@
                 }
             });
         }
+
+        // 投资
+        function insertRecordUser() {
+            var id = GetQueryString("id");
+            var money = $("#recordUser").val();
+            $.get("insertRecordUser",{"money":money,"id":id},function (data) {
+                if (data == '') {
+                    location.href = "/login.html";
+                } else {
+                    if (data == 'success') {
+                        alert("投资成功");
+                    } else {
+                        alert("操作失败");
+                    }
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -453,7 +473,7 @@
                 <span onclick="projectClick()" id="projectSpan">项目描述</span>
                 <span onclick="showControlInfo()" id="controlSpan">风控信息</span>
                 <span onclick="showManage()" id="manageSpan">贷后管理</span>
-                <span onclick="showRecord()" id="recordSpan">投标记录<i>10</i></span>
+                <span onclick="showRecord()" id="recordSpan">投标记录<i id="count"></i></span>
             </h2>
             <div class="det_con_box">
                 <div class="det_con_proone clearfix">
@@ -518,7 +538,7 @@
                 <!-- end r -->
             </div>
             <div class="comment_btn clearfix">
-                <a href="#" class="det_btn" onclick="insertUserComment()">提交</a>
+                <a href="" class="det_btn" onclick="insertUserComment()">提交</a>
             </div>
             <div class="comment_show">
                 <ul class="comment_show_ul" id="userComment">

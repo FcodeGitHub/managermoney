@@ -21,4 +21,7 @@ public interface UserService {
 
     //添加用户评论
     void insertUserComment(int id, String comment,String userName);
+
+    //投资
+    boolean insertRecordUser(int id, double money,String userName);
 }

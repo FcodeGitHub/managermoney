@@ -76,4 +76,18 @@ public class UserController {
             return userService.selectUserComment(id);
         }
     }
+
+    /**
+     * 投资
+     */
+    @RequestMapping("/insertRecordUser")
+    public String insertRecordUser(int id, double money,HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || userName.equals("")) {
+            return "";
+        } else {
+            boolean result = userService.insertRecordUser(id,money,userName);
+            return result ? "success":"fail";
+        }
+    }
 }

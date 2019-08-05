@@ -1,5 +1,6 @@
 package com.hy.moneyplanning.mapper;
 
+import com.hy.moneyplanning.pojo.RecordUser;
 import com.hy.moneyplanning.pojo.User;
 import com.hy.moneyplanning.pojo.UserComment;
 import org.apache.ibatis.annotations.Mapper;
@@ -21,4 +22,7 @@ public interface UserMapper {
 
     //新增用户评论
     void insertUserComment(UserComment userComment);
+
+    //投资
+    int insertRecordUser(RecordUser recordUser);
 }

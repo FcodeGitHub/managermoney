@@ -1,11 +1,13 @@
 package com.hy.moneyplanning.pojo;
 
+import java.util.Date;
+
 public class UserComment {
     private Integer id;
 
     private String userName;
 
-    private String createTime;
+    private Date createTime;
 
     private Integer projectId;
 
@@ -30,11 +32,11 @@ public class UserComment {
         this.userName = userName;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

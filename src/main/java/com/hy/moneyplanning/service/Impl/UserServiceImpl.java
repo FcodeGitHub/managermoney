@@ -1,12 +1,14 @@
 package com.hy.moneyplanning.service.Impl;
 
 import com.hy.moneyplanning.mapper.UserMapper;
+import com.hy.moneyplanning.pojo.RecordUser;
 import com.hy.moneyplanning.pojo.User;
 import com.hy.moneyplanning.pojo.UserComment;
 import com.hy.moneyplanning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,8 +54,19 @@ public class UserServiceImpl implements UserService {
         userComment.setComment(comment);
         userComment.setProjectId(id);
         userComment.setUserName(userName);
+        userComment.setCreateTime(new Date());
         userMapper.insertUserComment(userComment);
     }
 
-
+    @Override
+    public boolean insertRecordUser(int id, double money,String userName) {
+        RecordUser recordUser = new RecordUser();
+        recordUser.setCreateTime(new Date());
+        recordUser.setUserName(userName);
+        recordUser.setMoney(money);
+        recordUser.setProjectId(id);
+        recordUser.setState("手动投标");
+        int result = userMapper.insertRecordUser(recordUser);
+        return result > 0;
+    }
 }

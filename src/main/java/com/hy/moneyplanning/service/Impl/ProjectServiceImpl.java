@@ -77,4 +77,9 @@ public class ProjectServiceImpl implements ProjectService {
         public List<RecordUser> selectRecord ( int id){
             return projectMapper.selectRecord(id);
         }
+
+    @Override
+    public int selectRecordCount(int id) {
+        return projectMapper.selectRecordCount(id);
+    }
 }

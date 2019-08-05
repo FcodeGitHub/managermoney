@@ -21,7 +21,11 @@
 
     <!--新增用户评论-->
     <select id="insertUserComment" parameterType="UserComment">
-        insert into user_comment (projectId,comment,userName) values (#{projectId},#{comment},#{userName})
+        insert into user_comment (projectId,comment,userName,createTime) values (#{projectId},#{comment},#{userName},#{createTime})
     </select>
 
+    <!--投资-->
+    <insert id="insertRecordUser" parameterType="RecordUser">
+        insert into record_user values (null,#{userName},#{money},#{createTime},#{state},#{projectId})
+    </insert>
 </mapper>

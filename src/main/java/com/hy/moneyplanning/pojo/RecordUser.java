@@ -9,7 +9,7 @@ public class RecordUser {
 
     private Double money;
 
-    private String createTime;
+    private Date createTime;
 
     private String state;
 
@@ -18,7 +18,7 @@ public class RecordUser {
     public RecordUser() {
     }
 
-    public RecordUser(Integer id, String userName, Double money, String createTime, String state, Integer projectId) {
+    public RecordUser(Integer id, String userName, Double money, Date createTime, String state, Integer projectId) {
         this.id = id;
         this.userName = userName;
         this.money = money;
@@ -51,11 +51,11 @@ public class RecordUser {
         this.money = money;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

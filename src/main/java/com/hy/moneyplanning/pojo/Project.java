@@ -18,6 +18,7 @@ public class Project {
     private int ProductDeadline;
     private int borrowMoney;
     private String type;
+    private String perMoney;
 
     public Project() {
     }
@@ -149,6 +150,14 @@ public class Project {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPerMoney() {
+        return perMoney;
+    }
+
+    public void setPerMoney(String perMoney) {
+        this.perMoney = perMoney;
     }
 
     @Override

@@ -60,4 +60,8 @@
     <select id="selectRecord" parameterType="int" resultType="com.hy.moneyplanning.pojo.RecordUser">
         select * from record_user where projectId = #{id}
     </select>
+
+    <select id="selectRecordCount" parameterType="int" resultType="int">
+        select count(1) from record_user where projectId = #{id}
+    </select>
 </mapper>

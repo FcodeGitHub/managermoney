@@ -116,4 +116,11 @@ public class ProjectController {
         return projectService.selectRecord(id);
     }
 
+    /**
+     * 通过项目id查询有多少人投
+     */
+    @RequestMapping("/selectRecordCount")
+    public int selectRecordCount(int id) {
+        return projectService.selectRecordCount(id);
+    }
 }
