@@ -1,11 +1,11 @@
 package com.hy.moneyplanning.controller;
 
 import com.hy.moneyplanning.pojo.User;
+import com.hy.moneyplanning.pojo.UserComment;
 import com.hy.moneyplanning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -47,6 +47,28 @@ public class UserController {
             return "success";
         }else{
             return "false";
+        }
+    }
+
+    /**
+     * 查询用户评论
+     */
+    @RequestMapping("/selectUserComment")
+    public List<UserComment> selectUserComment(int id) {
+        return userService.selectUserComment(id);
+    }
+
+    /**
+     * 添加用户评论
+     */
+    @RequestMapping("/insertUserComment")
+    public List<UserComment> insertUserComment(int id, String comment, HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null || userName.equals("")) {
+            return null;
+        } else {
+            userService.insertUserComment(id,comment,userName);
+            return userService.selectUserComment(id);
         }
     }
 }

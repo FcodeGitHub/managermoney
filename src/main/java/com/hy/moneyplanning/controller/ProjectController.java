@@ -4,6 +4,7 @@ import com.hy.moneyplanning.pojo.*;
 import com.hy.moneyplanning.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,6 +26,19 @@ public class ProjectController {
 
         //System.out.println("666666");
         return projectList;
+
+    }
+
+    /*
+    *推荐列表展示
+     */
+    @RequestMapping("/recommendList")
+    public List<Project> showRecommendList(){
+
+
+        List<Project> recommendList = projectService.showRecommendList();
+
+        return recommendList;
     }
 
 

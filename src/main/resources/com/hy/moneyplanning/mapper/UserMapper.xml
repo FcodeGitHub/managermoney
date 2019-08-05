@@ -13,6 +13,16 @@
         insert into user (userName,passWord,phoneNum) values (#{userName},#{passWord},#{phoneNum})
     </insert>
 
+    <!--查询用户评论-->
+    <select id="selectUserComment" parameterType="int" resultType="UserComment">
+        select * from user_comment where projectId = #{id}
+    </select>
+
+    <!--新增用户评论-->
+    <select id="insertUserComment" parameterType="UserComment">
+        insert into user_comment (projectId,comment,userName) values (#{projectId},#{comment},#{userName})
+    </select>
+
     <!--查询手机号是否存在-->
     <select id="selectByPhoneNum" resultType="int" parameterType="String">
         select count(1) from user where phoneNum = #{phoneNum}

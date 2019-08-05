@@ -29,6 +29,9 @@ public interface ProjectService {
      */
     ControlInfo selectControlInfo(int id);
 
+
+    List<Project> showRecommendList();
+
     /**
      * 通过项目id查询贷后管理
      */
@@ -38,4 +41,5 @@ public interface ProjectService {
      * 通过项目id查询投标记录
      */
     List<RecordUser> selectRecord(int id);
+
 }

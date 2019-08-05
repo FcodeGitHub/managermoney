@@ -15,6 +15,47 @@
 <![endif]-->
 
 <script>
+
+	//推荐项目展示
+	$(function () {
+		$.ajax({
+			url:"project/recommendList",
+			type:"post",
+			dataType:"json",
+			success:function (data) {
+				showRecommendList(data);
+			},
+			error:function (msg) {
+				alert("showRecommendList出错啦！！" + msg);
+			}
+		});
+	});
+
+	//推荐项目数据展示
+
+	function showRecommendList(data){
+
+		var str = "";
+			str = "<div class=\"block2_biao clearfix\"><div class=\"clearfix\">\n" +
+					"<span class=\"fl\">"+data[0].projectName+"</span>\n" +
+					"<div class=\"block2_biao_r fr\"><div class=\"tjxm_jindu \"><div class=\"press_wper fl\"><div class=\"press\"></div></div>\n" +
+					"<span class=\"fl\">"+data[0].yearsHaving+"%</span></div></div></div><ul class=\"clearfix clear block2_biao_ul\">\n" +
+					"<li>起投资金：<em>"+data[0].beginMoney+"元</em></li>\n" +
+					"<li><img src=\"images/bao.png\" alt=\"\">年华收益：<strong>6+6<i>%</i></strong></li>\n" +
+					"<li>产品期限：<span>"+data[0].productDeadline+"天</span></li><li>借款金额：<span>"+data[0].borrowMoney+"元</span></li><li><a href=\"detail.html?id="+data[1].id+"\" class=\"invest_btn\">立即投资</a></li></ul></div>" +
+					"<div class=\"block2_biao2 clearfix\"><div class=\"clearfix\">\n" +
+					"<span class=\"fl\">"+data[0].projectName+"</span>\n" +
+					"<div class=\"block2_biao_r fr\"><div class=\"tjxm_jindu \"><div class=\"press_wper fl\"><div class=\"press\"></div></div>\n" +
+					"<span class=\"fl\">"+data[0].yearsHaving+"%</span></div></div></div><ul class=\"clearfix clear block2_biao_ul\">\n" +
+					"<li>起投资金：<em>"+data[0].beginMoney+"元</em></li>\n" +
+					"<li><img src=\"images/bao.png\" alt=\"\">年华收益：<strong>6+6<i>%</i></strong></li>\n" +
+					"<li>产品期限：<span>"+data[0].productDeadline+"天</span></li><li>借款金额：<span>"+data[0].borrowMoney+"元</span></li><li><a href=\"detail.html?id="+data[1].id+"\" class=\"invest_btn\">立即投资</a></li></ul></div>"
+
+			$("#RecommendList").append(str);
+
+	}
+
+
 	//项目列表展示
 	$(function(){
 	    $.ajax({
@@ -159,10 +200,10 @@
 				str = "<li>\n" +
 						"<em class=\"rank_bg04\">"+ data[i].num +"</em>\n" +
 						"<a href=\"#\">"+ data[i].username +"</a>\n" +
-						"<span>"+ data[i].money +"</span>\n" +
+						"<span>￥"+ data[i].money +"</span>\n" +
 						"<span>"+ data[i].invested +"</span>\n" +
 						"<span>"+ data[i].yield +"</span>\n" +
-						"</li>"
+						"</li>";
 				$("#weekList").append(str);
 				$("#monthList").append(str);
 				$("#topList").append(str);
@@ -265,16 +306,16 @@
 
 	      <!-- end block1 -->
 	      <div class="zscf_block2 mt30 clearfix ">
-	      	    <div class="zscf_block2_l fl">
-	      	    	<div class="block2_biao clearfix">
+	      	    <div class="zscf_block2_l fl" id="RecommendList">
+	      	    	<!--<div class="block2_biao clearfix">
 	      	    	     <div class="clearfix">
 		      	    	 <span class="fl">测试标【2132312】</span>
 		      	    	 <div class="block2_biao_r fr">
 		      	    	  	   <div class="tjxm_jindu ">
-	  	      	     	    	   	     	 
+
 	  	      	     	    	   	     	  <div class="press_wper fl">
 	  	      	     	    	   	     	  	    <div class="press">
-	  	      	     	    	   	     	  	    	  
+
 	  	      	     	    	   	     	  	    </div>
 	  	      	     	    	   	     	  </div>
 	  	      	     	    	   	     	   <span class="fl">11%</span>
@@ -301,10 +342,10 @@
 		      	    	 <span class="fl">测试标【2132312】</span>
 		      	    	 <div class="block2_biao_r fr">
 		      	    	  	   <div class="tjxm_jindu ">
-	  	      	     	    	   	     	 
+
 	  	      	     	    	   	     	  <div class="press_wper fl">
 	  	      	     	    	   	     	  	    <div class="press">
-	  	      	     	    	   	     	  	    	  
+
 	  	      	     	    	   	     	  	    </div>
 	  	      	     	    	   	     	  </div>
 	  	      	     	    	   	     	   <span class="fl">11%</span>
@@ -325,7 +366,7 @@
 		      	    	 	 	 <a href="11112/detail.html" class="invest_btn">立即投资</a>
 		      	    	 	 </li>
 		      	    	 </ul>
-	      	    	</div>
+	      	    	</div>-->
 	      	    </div>
 	      	    <!-- end left -->
 	      	    <div class="zscf_block2_r fl">
