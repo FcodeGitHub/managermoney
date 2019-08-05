@@ -32,7 +32,7 @@ public interface ProjectMapper {
     ControlInfo selectControlInfo(int id);
 
     /**
-     * 通过id查询保障措施
+     * 通过id查询保障措施kkkkk
      */
     Safety selectSafety(Integer safetyId);
 
