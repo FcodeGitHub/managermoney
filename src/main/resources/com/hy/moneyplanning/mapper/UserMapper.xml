@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hy.moneyplanning.mapper.UserMapper">
-    <!--验证账户是否存在-->
     <!--登录-->
     <select id="selectuser" resultType="int" parameterType="user">
         select count(1) from user where username = #{userName} and password = #{passWord}
@@ -11,7 +10,7 @@
 
     <!--注册账户-->
     <insert id="register" parameterType="user">
-    insert into user (userName,passWord,phoneNum) values (#{userName},#{passWord},#{phoneNum})
+        insert into user (userName,passWord,phoneNum) values (#{userName},#{passWord},#{phoneNum})
     </insert>
 
     <!--查询用户评论-->
@@ -22,6 +21,11 @@
     <!--新增用户评论-->
     <select id="insertUserComment" parameterType="UserComment">
         insert into user_comment (projectId,comment,userName) values (#{projectId},#{comment},#{userName})
+    </select>
+
+    <!--查询手机号是否存在-->
+    <select id="selectByPhoneNum" resultType="int" parameterType="String">
+        select count(1) from user where phoneNum = #{phoneNum}
     </select>
 
 </mapper>
