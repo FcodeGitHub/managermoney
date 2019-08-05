@@ -41,5 +41,22 @@ public interface ProjectMapper {
      */
     RiskControl selectRiskControl(Integer riskcontrolId);
 
+
     List<Project> showRecommendList();
+
+    /**
+     * 通过项目id查询贷后管理
+     */
+    Manage selectManage(int id);
+
+    /**
+     * 查询还款明细
+     */
+    List<Repay> selectRepay(int id);
+
+    /**
+     * 通过项目id查询投标记录
+     */
+    List<RecordUser> selectRecord(int id);
+
 }

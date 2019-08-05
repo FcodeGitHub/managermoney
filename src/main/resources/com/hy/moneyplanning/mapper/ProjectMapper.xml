@@ -29,23 +29,35 @@
         select * from projectList where id = #{id}
     </select>
 
-    <select id="selectProjectById" parameterType="int" resultType="Company">
+    <select id="selectProjectById" parameterType="int" resultType="com.hy.moneyplanning.pojo.Company">
         select * from company where projectId = #{id}
     </select>
 
-    <select id="selectControlInfo" parameterType="int" resultType="ControlInfo">
+    <select id="selectControlInfo" parameterType="int" resultType="com.hy.moneyplanning.pojo.ControlInfo">
         select * from controlInfo where projectId = #{id}
     </select>
 
-    <select id="selectSafety" parameterType="int" resultType="Safety">
+    <select id="selectSafety" parameterType="int" resultType="com.hy.moneyplanning.pojo.Safety">
         select * from safety where id = #{safetyId}
     </select>
 
-    <select id="selectRiskControl" parameterType="int" resultType="RiskControl">
+    <select id="selectRiskControl" parameterType="int" resultType="com.hy.moneyplanning.pojo.RiskControl">
         select * from riskControl where id = #{riskcontrolId}
     </select>
 
+
     <select id="showRecommendList" resultType="com.hy.moneyplanning.pojo.Project">
         select * from projectList where type = "新手" or type ="体验"
+    </select>
+    <select id="selectManage" parameterType="int" resultType="com.hy.moneyplanning.pojo.Manage">
+        select * from manage where projectId = #{id}
+    </select>
+
+    <select id="selectRepay" parameterType="int" resultType="com.hy.moneyplanning.pojo.Repay">
+        select * from repay where manageId = #{id}
+    </select>
+
+    <select id="selectRecord" parameterType="int" resultType="com.hy.moneyplanning.pojo.RecordUser">
+        select * from record_user where projectId = #{id}
     </select>
 </mapper>

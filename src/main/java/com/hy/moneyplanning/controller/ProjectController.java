@@ -100,4 +100,20 @@ public class ProjectController {
         return projectService.selectControlInfo(id);
     }
 
+    /**
+     * 通过项目id查询贷后管理
+     */
+    @RequestMapping("/selectManage")
+    public Manage selectManage(int id) {
+        return projectService.selectManage(id);
+    }
+
+    /**
+     * 通过项目id查询投标记录
+     */
+    @RequestMapping("/selectRecord")
+    public List<RecordUser> selectRecord(int id) {
+        return projectService.selectRecord(id);
+    }
+
 }

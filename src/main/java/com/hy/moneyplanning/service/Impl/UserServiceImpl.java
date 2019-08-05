@@ -23,4 +23,20 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+    //注册
+    @Override
+    public boolean register(User user) {
+       int result = userMapper.register(user);
+    return result>0?true :false;
+    }
+
+    //验证账户是否存在
+    @Override
+    public boolean selectByName(String phoneNum) {
+
+        return false;
+    }
+
+
 }
