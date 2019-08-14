@@ -24,9 +24,8 @@
                     //data:{"username":"jack","age":23},
                     data: $("#stu").serialize(),
                     success: function (data) {
-                        alert("data");
-                        location.href = "index.html";
-
+                        alert(data);
+                        location.href = "/index.html";
                     },//响应成功后的回调函数
                     false: function () {
                         alert("出错啦...");
@@ -34,20 +33,21 @@
                     dataType: "json"//设置接受到的响应数据的格式
                 });
             });
-        });
-
-    //查询用户是否存在
-        $("#user-phone").blur(function() {
-            var username = $("#user-phone").val();
-            $.ajax({
-                url :"/selectByName",
-                data : {"username":username},
-                success : function(data) {
-                },
-                false: function () {
-                    alert("查无此人...");
-                },//表示如果请求响应出现错误，会执行的回调函数
-                dataType: "json"//设置接受到的响应数据的格式
+            //查询用户是否存在
+            $("#user-phone").blur(function() {
+                var username = $("#user-phone").val();
+                $.ajax({
+                    url :"/selectByPhoneNum",
+                    data : {"userName":username},
+                    success : function(data) {
+                        alert(data);
+                        alert("用户名可以使用");
+                    },
+                    error: function () {
+                        alert("用户名重复");
+                    },//表示如果请求响应出现错误，会执行的回调函数
+                    dataType: "json"//设置接受到的响应数据的格式
+                });
             });
         });
     </script>
@@ -109,7 +109,6 @@
                         </p>
                         <p class="mt20">
                             <input type="text" name="phoneNum" placeholder="手机号" class="lg_input03 lg_input">
-
                         </p>
                         <p class="mt20 yanzheng">
                             <input type="text" placeholder="验证码" class="lg_input04 lg_input">
@@ -119,8 +118,7 @@
                             <input type="text" placeholder="邀请码" class="lg_input03 lg_input">
                         </p>
                         <p class="pt10"><a href="#">使用条款</a>&nbsp;&nbsp;<a href="#">隐私条款</a></p>
-                        <p class="mt20"><a href="#" class="lg_btn">立即登陆</a></p>
-
+                        <p class="mt20"><a href="" class="lg_btn" id="button">立即登陆</a></p>
                     </fieldset>
                 </form>
             </div>

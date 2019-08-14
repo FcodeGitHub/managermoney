@@ -64,4 +64,13 @@
     <select id="selectRecordCount" parameterType="int" resultType="int">
         select count(1) from record_user where projectId = #{id}
     </select>
+
+    <select id="selectAllMoney" resultType="int">
+        select sum(money) from record_user
+    </select>
+
+    <select id="selectPeoples" resultType="int">
+        select count(1) from user
+    </select>
+
 </mapper>

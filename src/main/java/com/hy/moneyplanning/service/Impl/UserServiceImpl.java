@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
     //验证账户是否存在
     @Override
     public boolean selectByName(String phoneNum) {
-
-        return false;
+        int result = userMapper.selectByPhoneNum(phoneNum);
+        return result> 0 ? true :false;
     }
 
     @Override

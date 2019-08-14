@@ -63,4 +63,7 @@ public interface ProjectMapper {
      * 通过项目id查询有多少人投
      */
     int selectRecordCount(int id);
+    int selectAllMoney();
+
+    int selectPeoples();
 }

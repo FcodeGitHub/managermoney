@@ -4,6 +4,7 @@ import com.hy.moneyplanning.pojo.*;
 import com.hy.moneyplanning.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -123,4 +124,12 @@ public class ProjectController {
     public int selectRecordCount(int id) {
         return projectService.selectRecordCount(id);
     }
+    //展示公司财富详情
+    @RequestMapping("/showCompanyDetail")
+    public CompanyDetail showCompanyDetail(){
+
+        CompanyDetail companyDetail = projectService.showCompanyDetail();
+        return companyDetail;
+    }
+
 }

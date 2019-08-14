@@ -82,4 +82,12 @@ public class ProjectServiceImpl implements ProjectService {
     public int selectRecordCount(int id) {
         return projectMapper.selectRecordCount(id);
     }
+
+    @Override
+    public CompanyDetail showCompanyDetail() {
+        CompanyDetail companyDetail = new CompanyDetail();
+        companyDetail.setNum(projectMapper.selectPeoples());
+        companyDetail.setAllMoney(projectMapper.selectAllMoney());
+        return companyDetail;
+    }
 }

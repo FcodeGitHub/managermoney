@@ -6,8 +6,6 @@ import com.hy.moneyplanning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -27,10 +25,9 @@ public class UserController {
 
         return result;
     }
-    /**
-     * 验证用户名/手机号是否存在
-     */
-    @RequestMapping("/selectByName")
+
+     //验证用户名/手机号是否存在
+    @RequestMapping("/selectByPhoneNum")
     public String selectByName(String phoneNum) {
         // 调用方法查询
         boolean result = userService.selectByName(phoneNum);
@@ -41,9 +38,7 @@ public class UserController {
         }
     }
 
-    /**
-     * 注册
-     */
+    //注册
     @RequestMapping("/register")
     public String register(User user) {
         // 调用方法查询
