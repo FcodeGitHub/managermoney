@@ -92,7 +92,7 @@
                     "                <p class=\"det_input\">\n" +
                     "                    <input type=\"text\" placeholder=\"100\" id='recordUser'>\n" +
                     "                </p>\n" +
-                    "                <p class=\"det_shouyi\">每投资1万元收益<strong>" + data.perMoney + "</strong></p>\n" +
+                    "                <p class=\"det_shouyi\">每投资1万元收益<strong>" + data.perMoney + "</strong></p>\n"+
                     "                <p><a href=\"\" class=\" pro_btn det_btn\" onclick='insertRecordUser()'>立即投资</a></p>";
                 $("#showProject").append(a);
                 $("#invest").append(b);
@@ -396,17 +396,21 @@
         function insertRecordUser() {
             var id = GetQueryString("id");
             var money = $("#recordUser").val();
-            $.get("insertRecordUser",{"money":money,"id":id},function (data) {
-                if (data == '') {
-                    location.href = "/login.html";
-                } else {
-                    if (data == 'success') {
-                        alert("投资成功");
+            if (money == '') {
+                alert("请输入");
+            } else {
+                $.get("insertRecordUser",{"money":money,"id":id},function (data) {
+                    if (data == '') {
+                        location.href = "/login.html";
                     } else {
-                        alert("操作失败");
+                        if (data == 'success') {
+                            alert("投资成功");
+                        } else {
+                            alert("操作失败");
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     </script>
 </head>

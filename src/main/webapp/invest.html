@@ -268,7 +268,7 @@
 					"<li>年华收益：<strong>"+InvestProjectList[i].yearHaving+"%</strong><br>还款方式："+InvestProjectList[i].payMethod+"</li>\n" +
 					"<li>剩余期限：<i>"+InvestProjectList[i].remainder+"</i>天<br>保障机构："+InvestProjectList[i].agencies+"</li>\n" +
 					"<li class=\"prolist_press\">募集金额：<strong>"+InvestProjectList[i].money+"</strong> 元 <br>认购进度：<span class=\"ui-progressbar-mid ui-progressbar-mid-100\">"+InvestProjectList[i].planing+"%</span></li>\n" +
-					"<li class=\"prolist_btn\"><a href=\"11112/detail.html\" class=\"pro_btn\">立即投资</a></li></ul></div>"
+					"<li class=\"prolist_btn\"><a href=\"/detail.html?id="+InvestProjectList[i].id+"\" class=\"pro_btn\">立即投资</a></li></ul></div>"
 
 			$("#investProjectList").append(str);
 			$("#investProjectList2").append(str);
